@@ -63,6 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'uts_klasifikasi_abstrak';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tugas 4 (PageRank dan Ringkasan Text)" href="tugas4_pagerank_ringkasantext.html" />
     <link rel="prev" title="Tugas 2 (GetData Server And Create PipeLines)" href="tugas2_getdataserver_pipelines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,6 +160,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="tugas1_webscrapper.html">Tugas 1 (Web Scrapping)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas2_getdataserver_pipelines.html">Tugas 2 (GetData Server And Create PipeLines)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS (KLASIFIKASI ABSTRAK PTA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas4_pagerank_ringkasantext.html">Tugas 4 (PageRank dan Ringkasan Text)</a></li>
 </ul>
 
     </div>
@@ -410,154 +412,121 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-1d99672c-de6e-4ef6-9440-668d798a1b86">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">HTTPError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-2-42e386a5477c&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># df = pd.read_excel(&#39;pta_mentah.xlsx&#39;)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/HamedAyani114/dataset/main/Data_PTA_mentah.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">211</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span> 
+<span class="g g-Whitespace">    </span><span class="mi">213</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>NPM</th>
-      <th>Judul</th>
-      <th>Abstrak</th>
-      <th>Prodi</th>
-      <th>Label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>40411100468</td>
-      <td>PERANCANGAN DAN IMPLEMENTASI SISTEM DATABASE T...</td>
-      <td>Sistem  informasi  akademik  (SIAKAD) merupaka...</td>
-      <td>Teknik Informatika</td>
-      <td>RPL</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>40411100476</td>
-      <td>APLIKASI KONTROL DAN MONITORING JARINGAN KOMPU...</td>
-      <td>Berjalannya koneksi jaringan komputer dengan l...</td>
-      <td>Teknik Informatika</td>
-      <td>RPL</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>40411100480</td>
-      <td>RANCANG BANGUN APLIKASI PROXY SERVER UNTUKENKR...</td>
-      <td>Web server adalah sebuah perangkat lunak serve...</td>
-      <td>Teknik Informatika</td>
-      <td>RPL</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>70411100070</td>
-      <td>SISTEM PENDUKUNG KEPUTUSAN OPTIMASI PENJADWALA...</td>
-      <td>Penjadwalan  kuliah  di  Perguruan  Tinggi  me...</td>
-      <td>Teknik Informatika</td>
-      <td>komputasi</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>80411100115</td>
-      <td>SISTEM AUGMENTED REALITY ANIMASI BENDA BERGERA...</td>
-      <td>Seiring perkembangan teknologi yang ada diduni...</td>
-      <td>Teknik Informatika</td>
-      <td>komputasi</td>
-    </tr>
-  </tbody>
-</table>
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">331</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span> 
+<span class="g g-Whitespace">    </span><span class="mi">333</span>         <span class="c1"># error: &quot;Callable[[VarArg(Any), KwArg(Any)], Any]&quot; has no</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span> 
+<span class="ne">--&gt; </span><span class="mi">950</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">951</span> 
+<span class="g g-Whitespace">    </span><span class="mi">952</span> 
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span> 
+<span class="g g-Whitespace">    </span><span class="mi">604</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">605</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span> 
+<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1440</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1441</span>         <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1442</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1443</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1444</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1733</span>                 <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1734</span>                     <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1735</span>             <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1736</span>                 <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>                 <span class="n">mode</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> 
+<span class="g g-Whitespace">    </span><span class="mi">712</span>     <span class="c1"># open URLs</span>
+<span class="ne">--&gt; </span><span class="mi">713</span>     <span class="n">ioargs</span> <span class="o">=</span> <span class="n">_get_filepath_or_buffer</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>         <span class="n">path_or_buf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/common.py</span> in <span class="ni">_get_filepath_or_buffer</span><span class="nt">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>         <span class="c1"># assuming storage_options is to be interpreted as headers</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="n">req_info</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">storage_options</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">363</span>         <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req_info</span><span class="p">)</span> <span class="k">as</span> <span class="n">req</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>             <span class="n">content_encoding</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>             <span class="k">if</span> <span class="n">content_encoding</span> <span class="o">==</span> <span class="s2">&quot;gzip&quot;</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/io/common.py</span> in <span class="ni">urlopen</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+<span class="ne">--&gt; </span><span class="mi">265</span>     <span class="k">return</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span> 
+<span class="g g-Whitespace">    </span><span class="mi">267</span> 
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>         <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
+<span class="ne">--&gt; </span><span class="mi">214</span>     <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> 
+<span class="g g-Whitespace">    </span><span class="mi">216</span> <span class="k">def</span> <span class="nf">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">):</span>
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">open</span><span class="nt">(self, fullurl, data, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span>         <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">523</span>             <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span> 
+<span class="g g-Whitespace">    </span><span class="mi">525</span>         <span class="k">return</span> <span class="n">response</span>
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">http_response</span><span class="nt">(self, request, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="c1"># request was successfully received, understood, and accepted.</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">632</span>             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span>                 <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> 
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">error</span><span class="nt">(self, proto, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>         <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span>             <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
+<span class="ne">--&gt; </span><span class="mi">561</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> 
+<span class="g g-Whitespace">    </span><span class="mi">563</span> <span class="c1"># XXX probably also want an abstract factory that knows when it makes</span>
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">_call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span>         <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">494</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>                 <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">/usr/lib/python3.9/urllib/request.py</span> in <span class="ni">http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="k">class</span> <span class="nc">HTTPDefaultErrorHandler</span><span class="p">(</span><span class="n">BaseHandler</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">640</span>     <span class="k">def</span> <span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">641</span>         <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">642</span> 
+<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="k">class</span> <span class="nc">HTTPRedirectHandler</span><span class="p">(</span><span class="n">BaseHandler</span><span class="p">):</span>
+
+<span class="ne">HTTPError</span>: HTTP Error 404: Not Found
+</pre></div>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-1d99672c-de6e-4ef6-9440-668d798a1b86')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-1d99672c-de6e-4ef6-9440-668d798a1b86 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-1d99672c-de6e-4ef6-9440-668d798a1b86');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -712,7 +681,7 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-f423e4dc-6319-49c6-8ad3-ff02635068d4">
+  <div id="df-d89890ee-bf14-48fd-8d80-59666f00241c">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -751,7 +720,7 @@ dtype: int64
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-f423e4dc-6319-49c6-8ad3-ff02635068d4')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d89890ee-bf14-48fd-8d80-59666f00241c')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -802,12 +771,12 @@ dtype: int64
 
       <script>
         const buttonEl =
-          document.querySelector('#df-f423e4dc-6319-49c6-8ad3-ff02635068d4 button.colab-df-convert');
+          document.querySelector('#df-d89890ee-bf14-48fd-8d80-59666f00241c button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-f423e4dc-6319-49c6-8ad3-ff02635068d4');
+          const element = document.querySelector('#df-d89890ee-bf14-48fd-8d80-59666f00241c');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -840,7 +809,7 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-09906506-ac4f-40c6-8357-b4dfda8d8971">
+  <div id="df-7891ee1a-6205-4ce9-babd-722e674a3909">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -871,7 +840,7 @@ dtype: int64
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-09906506-ac4f-40c6-8357-b4dfda8d8971')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7891ee1a-6205-4ce9-babd-722e674a3909')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -922,12 +891,12 @@ dtype: int64
 
       <script>
         const buttonEl =
-          document.querySelector('#df-09906506-ac4f-40c6-8357-b4dfda8d8971 button.colab-df-convert');
+          document.querySelector('#df-7891ee1a-6205-4ce9-babd-722e674a3909 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-09906506-ac4f-40c6-8357-b4dfda8d8971');
+          const element = document.querySelector('#df-7891ee1a-6205-4ce9-babd-722e674a3909');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -992,86 +961,55 @@ dtype: int64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading collection &#39;popular&#39;
 [nltk_data]    | 
 [nltk_data]    | Downloading package cmudict to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/cmudict.zip.
+[nltk_data]    |   Package cmudict is already up-to-date!
 [nltk_data]    | Downloading package gazetteers to /root/nltk_data...
-[nltk_data]    |   Unzipping corpora/gazetteers.zip.
+[nltk_data]    |   Package gazetteers is already up-to-date!
 [nltk_data]    | Downloading package genesis to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/genesis.zip.
+[nltk_data]    |   Package genesis is already up-to-date!
 [nltk_data]    | Downloading package gutenberg to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/gutenberg.zip.
+[nltk_data]    |   Package gutenberg is already up-to-date!
 [nltk_data]    | Downloading package inaugural to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/inaugural.zip.
+[nltk_data]    |   Package inaugural is already up-to-date!
 [nltk_data]    | Downloading package movie_reviews to
 [nltk_data]    |     /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/movie_reviews.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package names to /root/nltk_data...
-[nltk_data]    |   Unzipping corpora/names.zip.
+[nltk_data]    |   Package movie_reviews is already up-to-date!
+[nltk_data]    | Downloading package names to /root/nltk_data...
+[nltk_data]    |   Package names is already up-to-date!
 [nltk_data]    | Downloading package shakespeare to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/shakespeare.zip.
+[nltk_data]    |   Package shakespeare is already up-to-date!
 [nltk_data]    | Downloading package stopwords to /root/nltk_data...
-[nltk_data]    |   Unzipping corpora/stopwords.zip.
+[nltk_data]    |   Package stopwords is already up-to-date!
 [nltk_data]    | Downloading package treebank to /root/nltk_data...
-[nltk_data]    |   Unzipping corpora/treebank.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package twitter_samples to
+[nltk_data]    |   Package treebank is already up-to-date!
+[nltk_data]    | Downloading package twitter_samples to
 [nltk_data]    |     /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/twitter_samples.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package omw to /root/nltk_data...
+[nltk_data]    |   Package twitter_samples is already up-to-date!
+[nltk_data]    | Downloading package omw to /root/nltk_data...
+[nltk_data]    |   Package omw is already up-to-date!
 [nltk_data]    | Downloading package omw-1.4 to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package wordnet to /root/nltk_data...
+[nltk_data]    |   Package omw-1.4 is already up-to-date!
+[nltk_data]    | Downloading package wordnet to /root/nltk_data...
+[nltk_data]    |   Package wordnet is already up-to-date!
 [nltk_data]    | Downloading package wordnet2021 to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package wordnet31 to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package wordnet_ic to /root/nltk_data...
-[nltk_data]    |   Unzipping corpora/wordnet_ic.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package words to /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping corpora/words.zip.
+[nltk_data]    |   Package wordnet2021 is already up-to-date!
+[nltk_data]    | Downloading package wordnet31 to /root/nltk_data...
+[nltk_data]    |   Package wordnet31 is already up-to-date!
+[nltk_data]    | Downloading package wordnet_ic to /root/nltk_data...
+[nltk_data]    |   Package wordnet_ic is already up-to-date!
+[nltk_data]    | Downloading package words to /root/nltk_data...
+[nltk_data]    |   Package words is already up-to-date!
 [nltk_data]    | Downloading package maxent_ne_chunker to
 [nltk_data]    |     /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    |   Unzipping chunkers/maxent_ne_chunker.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package punkt to /root/nltk_data...
-[nltk_data]    |   Unzipping tokenizers/punkt.zip.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package snowball_data to
+[nltk_data]    |   Package maxent_ne_chunker is already up-to-date!
+[nltk_data]    | Downloading package punkt to /root/nltk_data...
+[nltk_data]    |   Package punkt is already up-to-date!
+[nltk_data]    | Downloading package snowball_data to
 [nltk_data]    |     /root/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]    | Downloading package averaged_perceptron_tagger to
+[nltk_data]    |   Package snowball_data is already up-to-date!
+[nltk_data]    | Downloading package averaged_perceptron_tagger to
 [nltk_data]    |     /root/nltk_data...
-[nltk_data]    |   Unzipping taggers/averaged_perceptron_tagger.zip.
+[nltk_data]    |   Package averaged_perceptron_tagger is already up-
+[nltk_data]    |       to-date!
 [nltk_data]    | 
 [nltk_data]  Done downloading collection popular
 </pre></div>
@@ -1146,7 +1084,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/209.7 KB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 KB</span> <span class=" -Color -Color-Red">10.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 KB</span> <span class=" -Color -Color-Red">6.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -1169,149 +1107,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/809 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 2/809 [00:02&lt;19:30,  1.45s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 3/809 [00:06&lt;29:31,  2.20s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 4/809 [00:15&lt;1:03:36,  4.74s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 5/809 [00:16&lt;46:34,  3.48s/it]  
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 6/809 [00:18&lt;39:41,  2.97s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 7/809 [00:20&lt;34:42,  2.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 8/809 [00:21&lt;28:21,  2.12s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 9/809 [00:22&lt;24:06,  1.81s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 10/809 [00:24&lt;26:37,  2.00s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 11/809 [00:28&lt;34:51,  2.62s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 12/809 [00:29&lt;26:01,  1.96s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 12/809 [00:29&lt;33:12,  2.50s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-25-e1879301b018&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/tqdm/std.py</span> in <span class="ni">inner</span><span class="nt">(df, func, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">803</span>                 <span class="c1"># on the df using our wrapper (which provides bar updating)</span>
-<span class="g g-Whitespace">    </span><span class="mi">804</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">805</span>                     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">df_function</span><span class="p">)(</span><span class="n">wrapper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">806</span>                 <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">807</span>                     <span class="n">t</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/core/series.py</span> in <span class="ni">apply</span><span class="nt">(self, func, convert_dtype, args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4431</span>         <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
-<span class="g g-Whitespace">   </span><span class="mi">4432</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">4433</span><span class="sd">         return SeriesApply(self, func, convert_dtype, args, kwargs).apply()</span>
-<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="sd">     def _reduce(</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/core/apply.py</span> in <span class="ni">apply</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1086</span><span class="sd">             return self.apply_str()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1087</span><span class="sd"> </span>
-<span class="ne">-&gt; </span><span class="mi">1088</span><span class="sd">         return self.apply_standard()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1089</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1090</span><span class="sd">     def agg(self):</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/core/apply.py</span> in <span class="ni">apply_standard</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span><span class="sd">                 # List[Union[Callable[..., Any], str]]]]]&quot;; expected</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span><span class="sd">                 # &quot;Callable[[Any], Any]&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1143</span><span class="sd">                 mapped = lib.map_infer(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span><span class="sd">                     values,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1145</span><span class="sd">                     f,  # type: ignore[arg-type]</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/pandas/_libs/lib.pyx</span> in <span class="ni">pandas._libs.lib.map_infer</span><span class="nt">()</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/tqdm/std.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span><span class="sd">                     # take a fast or slow code path; so stop when t.total==t.n</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span><span class="sd">                     t.update(n=1 if not t.total or t.n &lt; t.total else 0)</span>
-<span class="ne">--&gt; </span><span class="mi">800</span><span class="sd">                     return func(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span><span class="sd">                 # Apply the provided function (in **kwargs)</span>
-
-<span class="nn">&lt;ipython-input-25-e1879301b018&gt;</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(x)</span>
-<span class="ne">----&gt; </span><span class="mi">1</span><span class="sd"> df[&#39;abstrak_tokens&#39;]=df[&#39;abstrak_tokens&#39;].progress_apply(lambda x: stemmer.stem(&#39; &#39;.join(x)).split(&#39; &#39;))</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/CachedStemmer.py</span> in <span class="ni">stem</span><span class="nt">(self, text)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="sd">                 stems.append(self.cache.get(word))</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span><span class="sd">             else:</span>
-<span class="ne">---&gt; </span><span class="mi">20</span><span class="sd">                 stem = self.delegatedStemmer.stem(word)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="sd">                 self.cache.set(word, stem)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="sd">                 stems.append(stem)</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Stemmer.py</span> in <span class="ni">stem</span><span class="nt">(self, text)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span><span class="sd">         for word in words:</span>
-<span class="ne">---&gt; </span><span class="mi">27</span><span class="sd">             stems.append(self.stem_word(word))</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span><span class="sd">         return &#39; &#39;.join(stems)</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Stemmer.py</span> in <span class="ni">stem_word</span><span class="nt">(self, word)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="sd">             return self.stem_plural_word(word)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="sd">         else:</span>
-<span class="ne">---&gt; </span><span class="mi">36</span><span class="sd">             return self.stem_singular_word(word)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     def is_plural(self, word):</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Stemmer.py</span> in <span class="ni">stem_singular_word</span><span class="nt">(self, word)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd">         &quot;&quot;&quot;</span><span class="n">Stem</span> <span class="n">a</span> <span class="n">singular</span> <span class="n">word</span> <span class="n">to</span> <span class="n">its</span> <span class="n">common</span> <span class="n">stem</span> <span class="n">form</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="s2">         context = Context(word, self.dictionary, self.visitor_provider)</span>
-<span class="ne">---&gt; </span><span class="mi">84</span><span class="s2">         context.execute()</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span><span class="s2">         return context.result</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Context/Context.py</span> in <span class="ni">execute</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="s2">         #step 1 - 5</span>
-<span class="ne">---&gt; </span><span class="mi">37</span><span class="s2">         self.start_stemming_process()</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="s2">         #step 6</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Context/Context.py</span> in <span class="ni">start_stemming_process</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="s2">         #step 4, 5</span>
-<span class="ne">---&gt; </span><span class="mi">80</span><span class="s2">         self.remove_prefixes()</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="s2">         if self.dictionary.contains(self.current_word):</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="s2">             return</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Context/Context.py</span> in <span class="ni">remove_prefixes</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="s2">     def remove_prefixes(self):</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="s2">         for i in range(3):</span>
-<span class="ne">---&gt; </span><span class="mi">89</span><span class="s2">             self.accept_prefix_visitors(self.prefix_pisitors)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span><span class="s2">             if self.dictionary.contains(self.current_word):</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span><span class="s2">                 return</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/Sastrawi/Stemmer/Context/Context.py</span> in <span class="ni">accept_prefix_visitors</span><span class="nt">(self, visitors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="s2">         for visitor in visitors:</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span><span class="s2">             self.accept(visitor)</span>
-<span class="ne">--&gt; </span><span class="mi">111</span><span class="s2">             if self.dictionary.contains(self.current_word):</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="s2">                 return self.current_word</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="s2">             if self.process_is_stopped:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 809/809 [07:11&lt;00:00,  1.88it/s]
 </pre></div>
 </div>
 </div>
@@ -1346,7 +1142,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-001ff5de-25ec-4cee-87ff-5228a7846093">
+  <div id="df-fec114a5-dcae-40fa-92d3-f043b591fd18">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1435,7 +1231,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-001ff5de-25ec-4cee-87ff-5228a7846093')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-fec114a5-dcae-40fa-92d3-f043b591fd18')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1486,12 +1282,12 @@ Name: abstrak_tokens, Length: 809, dtype: object
 
       <script>
         const buttonEl =
-          document.querySelector('#df-001ff5de-25ec-4cee-87ff-5228a7846093 button.colab-df-convert');
+          document.querySelector('#df-fec114a5-dcae-40fa-92d3-f043b591fd18 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-001ff5de-25ec-4cee-87ff-5228a7846093');
+          const element = document.querySelector('#df-fec114a5-dcae-40fa-92d3-f043b591fd18');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1543,7 +1339,7 @@ Name: Label, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
-<span class="n">X_array</span><span class="o">=</span><span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1"># X_array=dfnw[&#39;abstrak_tokens&#39;].apply(lambda x: word_tokenize(x))</span>
 </pre></div>
 </div>
 </div>
@@ -1656,7 +1452,7 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5c40f1361dc9067fa399774771e0e84e55b84429bc918f7ea56c317e770314f9.png" src="_images/5c40f1361dc9067fa399774771e0e84e55b84429bc918f7ea56c317e770314f9.png" />
+<img alt="_images/7a28dc4c08773bf373d9202ffc06607bc210d4d936d11ed42fe96757a9df021e.png" src="_images/7a28dc4c08773bf373d9202ffc06607bc210d4d936d11ed42fe96757a9df021e.png" />
 </div>
 </div>
 </div>
@@ -1735,7 +1531,7 @@ Name: Label, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_tfidf_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_tfidf_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1764,10 +1560,10 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.7983539094650206
-Precision score :  0.8324494865235607
-Recall score :  0.7983539094650206
-F1 score :  0.8068034069029223
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8078817733990148
+Precision score :  0.8395731765863919
+Recall score :  0.8078817733990148
+F1 score :  0.8170343704826465
 </pre></div>
 </div>
 </div>
@@ -1783,7 +1579,7 @@ F1 score :  0.8068034069029223
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/839dcedf8da403f843c695345f5d864d511da4a7aa4010b94e8f982d80cc71b6.png" src="_images/839dcedf8da403f843c695345f5d864d511da4a7aa4010b94e8f982d80cc71b6.png" />
+<img alt="_images/c6d073ce1154ae84f8455d0a507b96d4a930f55ae77dd2c3b06d55520e039e2d.png" src="_images/c6d073ce1154ae84f8455d0a507b96d4a930f55ae77dd2c3b06d55520e039e2d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1797,13 +1593,13 @@ F1 score :  0.8068034069029223
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-         PBA       0.65      0.76      0.70        17
-         RPL       0.59      0.83      0.69        53
-   komputasi       0.93      0.79      0.85       173
+         PBA       0.80      0.71      0.75        17
+         RPL       0.56      0.79      0.65        43
+   komputasi       0.93      0.83      0.87       143
 
-    accuracy                           0.80       243
-   macro avg       0.72      0.80      0.75       243
-weighted avg       0.83      0.80      0.81       243
+    accuracy                           0.81       203
+   macro avg       0.76      0.77      0.76       203
+weighted avg       0.84      0.81      0.82       203
 </pre></div>
 </div>
 </div>
@@ -1830,10 +1626,10 @@ weighted avg       0.83      0.80      0.81       243
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8065843621399177
-Precision score :  0.8132241096389355
-Recall score :  0.8065843621399177
-F1 score :  0.8076023211607173
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8374384236453202
+Precision score :  0.8382830022455415
+Recall score :  0.8374384236453202
+F1 score :  0.8350286669810709
 </pre></div>
 </div>
 </div>
@@ -1849,7 +1645,7 @@ F1 score :  0.8076023211607173
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ed346d87b55c11ac1a891832e3bb82c7c681b0bfddb914acd28cf86e31226825.png" src="_images/ed346d87b55c11ac1a891832e3bb82c7c681b0bfddb914acd28cf86e31226825.png" />
+<img alt="_images/29b3c252d5597e17d7e21a9e04fa23921a006195d37425d6f7bcd97d418468e3.png" src="_images/29b3c252d5597e17d7e21a9e04fa23921a006195d37425d6f7bcd97d418468e3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1863,13 +1659,13 @@ F1 score :  0.8076023211607173
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-         PBA       0.62      0.47      0.53        17
-         RPL       0.64      0.77      0.70        53
-   komputasi       0.89      0.85      0.87       173
+         PBA       0.82      0.53      0.64        17
+         RPL       0.70      0.74      0.72        43
+   komputasi       0.88      0.90      0.89       143
 
-    accuracy                           0.81       243
-   macro avg       0.71      0.70      0.70       243
-weighted avg       0.81      0.81      0.81       243
+    accuracy                           0.84       203
+   macro avg       0.80      0.73      0.75       203
+weighted avg       0.84      0.84      0.84       203
 </pre></div>
 </div>
 </div>
@@ -1940,6 +1736,15 @@ weighted avg       0.81      0.81      0.81       243
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Tugas 2 (GetData Server And Create PipeLines)</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="tugas4_pagerank_ringkasantext.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 4 (PageRank dan Ringkasan Text)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
