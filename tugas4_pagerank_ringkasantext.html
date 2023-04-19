@@ -394,7 +394,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/619d4c1a73c351b5b2de8fdfc0a16258632b9163c94f9c39fd7d1fae88465b02.png" src="_images/619d4c1a73c351b5b2de8fdfc0a16258632b9163c94f9c39fd7d1fae88465b02.png" />
+<img alt="_images/e797cb59c7a0018d0f0216d8961955a17abd57da8d78046968e11840e021793d.png" src="_images/e797cb59c7a0018d0f0216d8961955a17abd57da8d78046968e11840e021793d.png" />
 </div>
 </div>
 <p><strong>Page Rank NetworkX</strong></p>
@@ -435,19 +435,33 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Read text dan pembersihan teks</p></li>
 <li><p>Bangun Matrik similarity dari kalimat</p></li>
+</ol>
+<blockquote>
+<div><p>dengan mengukur tingkat kesamaan antara dua kalimat. Fungsi ini menggunakan pendekatan cosine similarity untuk menghitung similarity antara dua vektor kalimat. Vektor kalimat dihitung dengan menghitung frekuensi kemunculan setiap kata pada kalimat tersebut. Setelah itu bangun matrix similarity yang menghasilkan matriks similarity antara semua pasang kalimat yang terdapat pada dokumen teks. Matriks ini digunakan untuk merepresentasikan hubungan antar kalimat dalam bentuk graf.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
 <li><p>RankSentences dari matrix similarity</p></li>
 <li><p>Ambil RankSentences tertinggi untuk digunakan ringkasan teks</p></li>
 </ol>
+<blockquote>
+<div><p>Ringkasan teks dihasilkan dengan melakukan pengurutan kalimat-kalimat pada dokumen teks berdasarkan nilai PageRank pada graf similarity antar kalimat. Kalimat-kalimat dengan nilai PageRank yang tinggi dianggap lebih penting dan dipilih sebagai bagian dari ringkasan teks.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2<span class="w"> </span>--quiet
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2<span class="w"> </span>docx2txt<span class="w"> </span>--quiet
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/232.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">12.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">7.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l?25hdone
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for docx2txt (setup.py) ... ?25l?25hdone
 </pre></div>
 </div>
 </div>
@@ -472,6 +486,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">PyPDF2</span> 
+<span class="kn">import</span> <span class="nn">docx2txt</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 </pre></div>
 </div>
@@ -481,7 +496,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read teks dan pembersihan teks</span>
 <span class="k">def</span> <span class="nf">read_article</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
-
     <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
         <span class="n">document</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -490,23 +504,28 @@ document.write(`
     <span class="k">elif</span> <span class="n">file_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pdf&#39;</span><span class="p">):</span>
         <span class="n">document</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">pdfReader</span> <span class="o">=</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">PdfReader</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-        <span class="n">teks</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="n">teks</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">num_pages</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdfReader</span><span class="o">.</span><span class="n">pages</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pages</span><span class="p">):</span>
             <span class="n">pageObj</span> <span class="o">=</span> <span class="n">pdfReader</span><span class="o">.</span><span class="n">pages</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">teks</span> <span class="o">+=</span> <span class="n">pageObj</span><span class="o">.</span><span class="n">extract_text</span><span class="p">()</span>
         <span class="n">document</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">teks</span><span class="p">)</span>
 
+    <span class="k">elif</span> <span class="n">file_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.docx&#39;</span><span class="p">):</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">teks</span> <span class="o">=</span> <span class="n">docx2txt</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">document</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">teks</span><span class="p">)</span>
+        
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;File tidak didukung, hanya txt dan pdf yang didukung&quot;</span><span class="p">)</span>
-    
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;File tidak didukung, file didukung: .txt, .pdf, .docx&quot;</span><span class="p">)</span>
+
     <span class="n">article</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;. &quot;</span><span class="p">)</span>
     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">article</span><span class="p">:</span>
-        <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[^a-zA-Z]&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
+        <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; -&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;- &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; .&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
     <span class="n">sentences</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 
-    
     <span class="k">return</span> <span class="n">sentences</span>
 
 <span class="c1"># ekstrak kalimat yang similar/mirip</span>
@@ -560,10 +579,10 @@ document.write(`
     <span class="n">sentences</span> <span class="o">=</span>  <span class="n">read_article</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
 
     <span class="c1"># Step 2 - similar matrix dari kalimat</span>
-    <span class="n">sentence_similarity_martix</span> <span class="o">=</span> <span class="n">similarity_matrix</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">stop_words</span><span class="p">)</span>
+    <span class="n">sentence_similarity_matrix</span> <span class="o">=</span> <span class="n">similarity_matrix</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">stop_words</span><span class="p">)</span>
 
     <span class="c1"># Step 3 - RankSentences dari similar matrix</span>
-    <span class="n">sentence_similarity_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_numpy_array</span><span class="p">(</span><span class="n">sentence_similarity_martix</span><span class="p">)</span>
+    <span class="n">sentence_similarity_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_numpy_array</span><span class="p">(</span><span class="n">sentence_similarity_matrix</span><span class="p">)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">sentence_similarity_graph</span><span class="p">)</span>
 
     <span class="c1"># Step 4 - urutkan RankSentences ASC, ambil kalimat sebanyak top_n dan gabung kalimat.</span>
@@ -585,18 +604,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-17 19:59:17--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-19 12:01:19--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 3808 (3.7K) [text/plain]
-Saving to: ‘berita1.txt’
+Saving to: ‘berita1.txt.1’
 
 
-berita1.txt           0%[                    ]       0  --.-KB/s               
-berita1.txt         100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s  
+berita1.txt.1         0%[                    ]       0  --.-KB/s               
+berita1.txt.1       100%[===================&gt;]   3.72K  --.-KB/s    in 0.001s  
 
-2023-04-17 19:59:17 (2.13 MB/s) - ‘berita1.txt’ saved [3808/3808]
+2023-04-19 12:01:19 (2.62 MB/s) - ‘berita1.txt.1’ saved [3808/3808]
 </pre></div>
 </div>
 </div>
@@ -622,18 +641,20 @@ berita1.txt         100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-17 19:59:18--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-19 12:01:19--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.109.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 86475 (84K) [application/octet-stream]
-Saving to: ‘rangkuman.pdf’
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘rangkuman.pdf.1’
 
 
-rangkuman.pdf         0%[                    ]       0  --.-KB/s               
-rangkuman.pdf       100%[===================&gt;]  84.45K  --.-KB/s    in 0.006s  
+rangkuman.pdf.1       0%[                    ]       0  --.-KB/s               
+rangkuman.pdf.1     100%[===================&gt;]  84.45K  --.-KB/s    in 0.009s  
 
-2023-04-17 19:59:18 (14.0 MB/s) - ‘rangkuman.pdf’ saved [86475/86475]
+2023-04-19 12:01:19 (9.12 MB/s) - ‘rangkuman.pdf.1’ saved [86475/86475]
 </pre></div>
 </div>
 </div>
@@ -646,15 +667,56 @@ rangkuman.pdf       100%[===================&gt;]  84.45K  --.-KB/s    in 0.006s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Bobot yang diberikan pada setiap kalimat dihitung berdasarkan probabilitas rata -rata kata dalam kalimat tersebut, d an memilih kalimat skor terbaik. Pendekatan ini dapat digunakan untuk memilih kalimat atau kata -kata yang penting dalam dokumen dan membuat ringkasan yang efektif. Terdapat tiga proses utama , yaitu menciptakan representasi intermediat dari teks input, memberikan skor pada setiap kalimat berdasarkan representasi tersebut, dan memilih beberapa kalimat terbaik sebagai ringkasan. Sistem extractive memilih beberapa kalimat terbaik untuk dijadikan ringkasan Terdapat beberapa yang mempengaruhi penilaian pentingnya suatu kalimat dalam teks, seperti konteks pengguna atau query, lingkungan tempat dokumen input berada, dan genre dokumen. Pendekatan C entroid yang merupakan ringkasan dokumen menggunakan representasi topik dan menetapkan ambang batas untuk menentukan kata yang penting dalam dokumen. SumBasic, suatu sistem yang menggunakan probabilitas kata untuk menentukan kepentingan setiap kalimat dalam dokumen. Dan setiap kalimat akan diberi skor berdasarkan pentingnya dalam teks inpu t. Setiap kalimat dalam teks direpresentasikan sebagai sebuah vertex atau simpul, dan setiap hubungan antara kalimat diberi bobot sesuai dengan kemiripan antara dua kalimat tersebut. Pentingnya suatu kalimat dihitung berdasarkan jumlah tanda topik yang terkandung di dalamnya atau sebagai proporsi tanda topik dalam kalimat. Pendekatan kedua adalah menggunakan machine learning untuk mengekstraksi kalimat -kalimat yang penting&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; Pendekatan ini dapat digunakan untuk memilih kalimat atau kata-kata yang penting dalam dokumen dan membuat ringkasan yang efektif. Dan setiap kalimat akan diberi skor berdasarkan pentingnya dalam teks inpu t.  2.2 Frequency-driven Approaches Merupakan p endekatan kata topik dan pendekatan probabilitas kata. Sistem extractive memilih beberapa kalimat terbaik untuk dijadikan ringkasan Terdapat beberapa yang mempengaruhi penilaian pentingnya suatu kalimat dalam teks, seperti konteks pengguna atau query, lingkungan tempat dokumen input berada, dan genre dokumen.  4.  3.2. Pendekatan C entroid yang merupakan ringkasan dokumen menggunakan representasi topik dan menetapkan ambang batas untuk menentukan kata yang penting dalam dokumen. Bobot yang diberikan pada setiap kalimat dihitung berdasarkan probabilitas rata-rata kata dalam kalimat tersebut, d an memilih kalimat skor terbaik. Pendekatan pertama adalah menggunakan representasi indikator. SumBasic, suatu sistem yang menggunakan probabilitas kata untuk menentukan kepentingan setiap kalimat dalam dokumen&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Implementasi file DOCX</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-19 12:01:24--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
+Length: 229321 (224K) [application/octet-stream]
+Saving to: ‘reviewjurnal.docx’
+
+
+reviewjurnal.docx     0%[                    ]       0  --.-KB/s               
+reviewjurnal.docx   100%[===================&gt;] 223.95K  --.-KB/s    in 0.02s   
+
+2023-04-19 12:01:24 (9.12 MB/s) - ‘reviewjurnal.docx’ saved [229321/229321]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;outSummary_rangkuman.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outSummary_rangkuman</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outSummary_reviewjurnal</span><span class="o">=</span><span class="n">ringkasanTeks</span><span class="p">(</span><span class="s1">&#39;reviewjurnal.docx&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">outSummary_reviewjurnal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;nilai CSTM1 melalui iterasi awal yang diperoleh dari langkah 1, kemudian nilai CSTM1 tersebut dipotong dengan persamaan (3) Enkripsi Dekripsi Enkripsi Masukan plaintext, kunci dan ukuran blok. Bagi blok plaintext sesuai dengan ukuran blok dan jumlah karakter plaintext. Lakukan fungsi CSTM dan fungsi pemotongan untuk membangkitkan deretan bilangan acak kunci dan total pergeseran. Lakukan operasi CFB dan pergeseran karakter ke kanan sebesar total pergeseran. Hasil enkripsi (ciphertext). Dekripsi Masukan ciphertext, kunci dan ukuran blok. Bagi blok plaintext sesuai dengan ukuran blok dan jumlah karakter plaintext. Lakukan operasi CFB dan pergeseran karakter ke kiri sebesar total pergeseran. Lakukan fungsi CSTM dan fungsi pemotongan untuk membangkitkan deretan bilangan acak kunci dan total pergeseran. Hasil dekripsi (plaintext)  Hasil dan Pembahasan Pengujian 18 file doc, docx dan 8 file txt, dengan 4 macam pengujian. (i) pengujian 1 (ukuran file ≤ 35kb dan ukuran file mod blok = 0), (ii) pengujian 2 (ukuran file 36kb – 60kb dan ukuran file mod blok = 0), (iii) pengujian 3 (ukuran file 61kb – 80kb dan ukuran file mod blok ≠ 0) dan (iv) pengujian 4 (ukuran file &gt; 80kb dengan ukuran file mod blok ≠ 0). Enkripsi Dekripsi. Key: “ANITAMARIANYSONB” Ukuran blok = 100 Analisis Korelasi (hubungan antar data) Hasil enkripsi dari pengujian menunjukkan korelasi 0,163326411. Salat satu metode adalah Chiper Feed Back (CFB), namun terdapat kelemahan yaitu dimana setiap blok memiliki kuncinya yang sama, sehingga diperlukan metode pembangkit bilangan acak (chaotic) untuk menghasilkan kunci yang berbeda pada setiap blok nya. Materi dan Metode Penelitian Data penelitian Data penelitian berupa file teks dengan 18 file doc dan docx serta 8 file txt dengan ukuran bervariasi mulai dari 24 kb sampai 305 kb. Algoritma CFB (Modifikasi) Pada mode CFB yang asli, kunci yang digunakan pada setiap blok sama. Oleh karena itu, diusulkan mode CFB dengan menggunakan kunci yang berbeda pada setiap blok yang dibangkitkan dengan oleh fungsi chaotic skew tent map (CSTM). Berikut disajikan pencarian 𝑥_01 potongan i.  Pembangkitan kunci Langkah: Penentuan iterasi awal menggunakan fungsi pemotongan Membangkitkan bilangan acak kunci menggunakan fungsi CSTM: Membangkitkan bilangan acak total pergeseran bit karakter teks bilangan acak pertama, nilai x0 yang telah diperoleh dimasukkan ke fungsi pemotongan.  Session keys Algoritma yang diusulkan Mengubah kunci ke numerik untuk CTSM dengan panjang kunci 16 karakter desimal atau sebesar 128-bit K = k_1, k_2, …, k_16 Langkah: Setiap karakter tersebut dikonversi ke dalam bentuk ASCCI. dimana, k_1 sampai k_16 mempresentasikan 8-bit biner dari setiap karakter kunci. Bagi atau potong 16 karkter kunci tersebut masing-masing bagian yakni 4 karakter. Mencari 𝑥_01, 𝑥_02, 𝑥_03 dan 𝑥_04 manggunakan potongan-potongan tersebut. Nama: Irham Hamed Ayani NIM: 200411100114 Kelas: Kriptografi 6B Identitas Jurnal Judul: PENYANDIAN DATA TEKS MENGGUNAKAN ALGORITMA CIPHER FEEDBACK DAN CHAOTIC SKEW TENT MAP Jurnal: J-Icon : Jurnal Komputer dan Informatika Nomor jurnal: J-ICON, Vol. Hal itu menunjukkan tidak ada korelasi antara data input dan output (0=tidak ada korelasi, 1=korelasi) Analisis Standar Deviasi dan Variansi (sebaran data) Rata-rata standar deviasi dan variansi dari plaintext dan ciphertext yang memiliki perbedaan cukup besar yaitu nilai standar deviasi dari plaintext =371,18 dan ciphertext = 1111,9175 sedangkan nilai variansi plaintext = 98491.04 dan ciphertext = 10.256.837,77. Maka dibutuhkan sebuah metode kriptografi mengamankan/mengenkripsi dan dapat dibaca kembali oleh yang berhak (mendekripsi). Sonbay , Adriana Fanggidae , Kornelis Letelay Latar belakang Keamanan dokumen pada perusahaan instansi sangat penting. 5 No&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Save Hasil ringkasan</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;outSummary_reviewjurnal.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outSummary_reviewjurnal</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
