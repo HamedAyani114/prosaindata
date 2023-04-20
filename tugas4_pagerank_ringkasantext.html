@@ -414,7 +414,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/65c8091c29de81a9de502d8069c00db57921cd9a98aa64fb739fad40bbb1303e.png" src="_images/65c8091c29de81a9de502d8069c00db57921cd9a98aa64fb739fad40bbb1303e.png" />
+<img alt="_images/5c071e5dff50ea21ec47359c40c7c594378aa6398b7b587fd7879309b1c3d042.png" src="_images/5c071e5dff50ea21ec47359c40c7c594378aa6398b7b587fd7879309b1c3d042.png" />
 </div>
 </div>
 <div class="section" id="pagerank">
@@ -473,33 +473,19 @@ document.write(`
 <h2>Text Summarizion<a class="headerlink" href="#text-summarizion" title="Permalink to this heading">#</a></h2>
 <div class="section" id="algoritma-ringkasan-teks">
 <h3>Algoritma ringkasan teks<a class="headerlink" href="#algoritma-ringkasan-teks" title="Permalink to this heading">#</a></h3>
-<p>Dalam ringkasan teks terdapat beberapa langkah yang harus dilakukan;</p>
+<p>Dalam ringkasan teks terdapat beberapa langkah/algortma;</p>
 <ol class="arabic simple">
-<li><p>Read text dan pembersihan teks</p></li>
-<li><p>Bangun Matrik similarity dari kalimat</p></li>
-</ol>
-<blockquote>
-<div><p>dengan mengukur tingkat kesamaan antara dua kalimat. Fungsi ini menggunakan pendekatan cosine similarity untuk menghitung similarity antara dua vektor kalimat. Vektor kalimat dihitung dengan menghitung frekuensi kemunculan setiap kata pada kalimat tersebut. Setelah itu bangun matrix similarity yang menghasilkan matriks similarity antara semua pasang kalimat yang terdapat pada dokumen teks. Matriks ini digunakan untuk merepresentasikan hubungan antar kalimat dalam bentuk graf.</p>
-</div></blockquote>
-<ol class="arabic simple" start="3">
-<li><p>RankSentences dari matrix similarity</p></li>
-<li><p>Ambil RankSentences tertinggi untuk digunakan ringkasan teks</p></li>
-</ol>
-<blockquote>
-<div><p>Ringkasan teks dihasilkan dengan melakukan pengurutan kalimat-kalimat pada dokumen teks berdasarkan nilai PageRank pada graf similarity antar kalimat. Kalimat-kalimat dengan nilai PageRank yang tinggi dianggap lebih penting dan dipilih sebagai bagian dari ringkasan teks.</p>
-</div></blockquote>
-<p>Berikut adalah penjelasan algoritma untuk membuat laporan:</p>
-<ol class="arabic simple">
-<li><p>Membaca dokumen.</p></li>
+<li><p>Read dokumen dan pembersihan teks.</p></li>
 <li><p>Split dokumen menjadi kalimat (tokenisasi kalimat).</p></li>
 <li><p>Menghitung skor setiap kalimat dengan menghitung frekuensi kata-kata yang muncul dalam kalimat menggunakan algoritma PageRank.</p></li>
 </ol>
 <blockquote>
 <div><p>Setiap kalimat dikonversi menjadi vektor dengan menghitung frekuensi kemunculan kata-kata pada kalimat tersebut menggunakan CountVectorizer, dan kata yang termasuk stopwords tidak ikut dihitung.
-<br> Setelah itu, vektor-vektor kalimat tersebut dinormalisasi menggunakan TfidfTransformer sehingga hasilnya adalah matriks normalisasi. Matriks normalisasi tersebut dikalikan dengan transposenya (matriks dot product) sehingga menghasilkan res_graph yang merepresentasikan similarity score antara masing-masing kalimat pada dokumen</p>
+<br> Setelah itu, vektor-vektor kalimat tersebut dinormalisasi menggunakan TfidfTransformer sehingga hasilnya adalah matriks normalisasi.
+<br>Matriks normalisasi tersebut dikalikan dengan transposenya (matriks dot product) sehingga menghasilkan res_graph yang merepresentasikan similarity score antara masing-masing kalimat pada dokumen</p>
 </div></blockquote>
 <ol class="arabic simple" start="4">
-<li><p>res_graph diubah menjadi graph networkx.</p></li>
+<li><p>Bentuk Graph dan tentukan PageRank.</p></li>
 </ol>
 <blockquote>
 <div><p>Dari Graph yang dibentuk tentukan nilai PageRank dari kalimat graph(node mewakili kalimat). Urutkan kalimat dengan pagerank tertinggi.</p>
@@ -511,8 +497,7 @@ document.write(`
 <div><p>Pemilihan kalimat didasarkan pada skor pagerank yaitu dengan memberi threshold(rata-rata pagerank kalimat) dan menentukan berapa banyak kalimat yang akan digunakan sebagai ringkasan. Kalimat-kalimat yang dipilih adalah kalimat yang memiliki skor di atas ambang batas dan kurang dari max kalimat ringkasan.</p>
 </div></blockquote>
 <ol class="arabic simple" start="5">
-<li><p>Menghasilkan ringkasan dari kalimat-kalimat yang dipilih dengan cara menggabungkan kalimat-kalimat tersebut.</p></li>
-<li><p>Menyimpan ringkasan ke dalam sebuah dokumen baru sebagai laporan.</p></li>
+<li><p>Gabung kalimat ringkasan dari hasil pemilihan kalimat.</p></li>
 </ol>
 </div>
 <div class="section" id="code">
@@ -520,20 +505,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2<span class="w"> </span>docx2txt<span class="w"> </span>--quiet
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/232.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">225.3/232.6 kB</span> <span class=" -Color -Color-Red">8.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">6.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l?25hdone
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for docx2txt (setup.py) ... ?25l?25hdone
 </pre></div>
 </div>
 </div>
@@ -646,21 +617,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:05:06--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
-HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:19:34--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
 Length: 3808 (3.7K) [text/plain]
-Saving to: ‘berita1.txt.2’
+Saving to: ‘berita1.txt.3’
 
 
-berita1.txt.2         0%[                    ]       0  --.-KB/s               
-berita1.txt.2       100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s  
+berita1.txt.3         0%[                    ]       0  --.-KB/s               
+berita1.txt.3       100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s  
 
-2023-04-20 13:05:07 (2.22 MB/s) - ‘berita1.txt.2’ saved [3808/3808]
+2023-04-20 13:19:34 (2.00 MB/s) - ‘berita1.txt.3’ saved [3808/3808]
 </pre></div>
 </div>
 </div>
@@ -709,21 +677,21 @@ berita1.txt.2       100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:05:07--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:19:35--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response... 
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 86475 (84K) [application/octet-stream]
-Saving to: ‘rangkuman.pdf.1’
+Saving to: ‘rangkuman.pdf.2’
 
 
-rangkuman.pdf.1       0%[                    ]       0  --.-KB/s               
-rangkuman.pdf.1     100%[===================&gt;]  84.45K  --.-KB/s    in 0.01s   
+rangkuman.pdf.2       0%[                    ]       0  --.-KB/s               
+rangkuman.pdf.2     100%[===================&gt;]  84.45K  --.-KB/s    in 0.02s   
 
-2023-04-20 13:05:07 (6.12 MB/s) - ‘rangkuman.pdf.1’ saved [86475/86475]
+2023-04-20 13:19:35 (4.93 MB/s) - ‘rangkuman.pdf.2’ saved [86475/86475]
 </pre></div>
 </div>
 </div>
@@ -772,7 +740,7 @@ rangkuman.pdf.1     100%[===================&gt;]  84.45K  --.-KB/s    in 0.01s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:05:08--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 13:19:35--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
 HTTP request sent, awaiting response... 
@@ -780,15 +748,15 @@ HTTP request sent, awaiting response...
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 229321 (224K) [application/octet-stream]
-Saving to: ‘reviewjurnal.docx.1’
+Saving to: ‘reviewjurnal.docx.2’
 
 
-reviewjurnal.docx.1   0%[                    ]       0  --.-KB/s               
+reviewjurnal.docx.2   0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reviewjurnal.docx.1 100%[===================&gt;] 223.95K  --.-KB/s    in 0.03s   
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reviewjurnal.docx.2 100%[===================&gt;] 223.95K  --.-KB/s    in 0.03s   
 
-2023-04-20 13:05:08 (7.06 MB/s) - ‘reviewjurnal.docx.1’ saved [229321/229321]
+2023-04-20 13:19:35 (7.76 MB/s) - ‘reviewjurnal.docx.2’ saved [229321/229321]
 </pre></div>
 </div>
 </div>
