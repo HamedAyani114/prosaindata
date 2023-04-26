@@ -414,7 +414,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/68dacc1f0a312bde8a32d13f7a98ffb8e7ad39116e1eca0087198f6c036dfc3b.png" src="_images/68dacc1f0a312bde8a32d13f7a98ffb8e7ad39116e1eca0087198f6c036dfc3b.png" />
+<img alt="_images/4785044639f244793707d323a2a903c792ce7ea29f169c6b9c600b46207b10b0.png" src="_images/4785044639f244793707d323a2a903c792ce7ea29f169c6b9c600b46207b10b0.png" />
 </div>
 </div>
 <div class="section" id="pagerank">
@@ -509,10 +509,64 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># page rank</span>
+<span class="c1"># inisialisasi nilai pagerank awal tiap node</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">G2</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G2</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span>
+
+<span class="c1"># print(&quot;Nilai Pagerank Awal : &quot;, pr)</span>
+<span class="n">prBaru</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.85</span>
+<span class="c1"># m = G2.number_of_edges()</span>
+<span class="n">iterasi</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">error</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">errorMax</span> <span class="o">=</span> <span class="mf">0.00001</span>
+<span class="n">iterasiMax</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># iterasi perhitungan nilai pagerank</span>
+<span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">errorMax</span> <span class="ow">and</span> <span class="n">iterasi</span> <span class="o">&lt;</span> <span class="n">iterasiMax</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pr</span><span class="p">:</span>
+        <span class="n">prBaru</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G2</span><span class="o">.</span><span class="n">in_edges</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">prBaru</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">pr</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">/</span><span class="n">G2</span><span class="o">.</span><span class="n">out_degree</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pr</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">prBaru</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pr</span><span class="p">:</span>
+        <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prBaru</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">iterasi</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">pr</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0, 0.20729395202262896),
+ (1, 0.10518371414099928),
+ (2, 0.0753996874851362),
+ (3, 0.043891531350852636),
+ (4, 0.09676309522313073),
+ (5, 0.09676309522313073),
+ (6, 0.06405897670360203),
+ (7, 0.143380204187475),
+ (8, 0.1672657436630444)]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="hasil-perbandingan">
 <h4>Hasil perbandingan<a class="headerlink" href="#hasil-perbandingan" title="Permalink to this heading">#</a></h4>
-<p>Penghitungan pagerank dari library networkX dan penghitungan manual dengan excel dengan 6 iterasi sudah mendekati(mirip).</p>
+<p>Penghitungan pagerank dari library networkX dan penghitungan manual baik dari excel dengan 6 iterasi maupun code sudah mendekati(mirip).</p>
 </div>
 </div>
 </div>
@@ -552,6 +606,20 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2<span class="w"> </span>docx2txt<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/232.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">225.3/232.6 kB</span> <span class=" -Color -Color-Red">7.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">5.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l?25hdone
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for docx2txt (setup.py) ... ?25l?25hdone
 </pre></div>
 </div>
 </div>
@@ -659,40 +727,7 @@ document.write(`
 <h4>Implementasi file txt<a class="headerlink" href="#implementasi-file-txt" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 14:38:46--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3808 (3.7K) [text/plain]
-Saving to: ‘berita1.txt.4’
-
-
-berita1.txt.4         0%[                    ]       0  --.-KB/s               
-berita1.txt.4       100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s  
-
-2023-04-20 14:38:46 (1.97 MB/s) - ‘berita1.txt.4’ saved [3808/3808]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outSummary_berita1</span><span class="o">=</span><span class="n">ringkasanTeks</span><span class="p">(</span><span class="s2">&quot;berita1.txt&quot;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outSummary_berita1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="p">)))</span>
-<span class="n">outSummary_berita1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Kronologi OTT Wali Kota Yana Mulyana Dkk Terkait Suap Rp 924,6 Juta untuk Bandung Smart City Modus THR sebagai gratifikasi atau suap terhadap pejabat negara juga terjadi dalam pelaksanaan OTT beberapa waktu lalu. KPK Amankan Uang Asing hingga Sepatu Louis Vuitton Saat OTT Wali Kota Bandung Yana MulyanaYana diduga menerima suap dalam proyek pengadaan closed circuit television (CCTV) dan internet service provider (ISP) untuk layanan digital Bandung Smart City di Pemerintah Kota Bandung, Jawa Barat tahun anggaran 2022-2023. Terkini, modus THR terungkap dalam operasi tangkap tangan (OTT) terhadap Wali Kota Bandung Yana Mulyana pada Jumat (15/4/2023). Sebelum Ditangkap KPK, Yana Mulyana Lantik Pejabat Pemkot hingga Resmikan Kampung Bebas RentenirKeenamnya diduga melakukan tindak pidana suap terkait pengadaan CCTV dan jasa jaringan internet program Bandung Smart City Tahun Anggaran 2022-2023. &quot;Modus korupsi untuk pemberian THR juga menjadi perhatian kami setelah pada tangkap tangan KPK sebelumnya juga salah satunya untuk pemberian THR,&quot; kata Ghufron dalam konferensi pers, di Gedung Merah Putih KPK, Jakarta, Minggu (16/4/2023). Wakil Ketua KPK Nurul Ghufron mengatakan, modus pemberian THR sebagai bentuk gratifikasi terhadap aparatur sipil negara (ASN) beberapa kali ditemui dalam operasi tangkap tangan (OTT). “Penerimaan uang ini dari hasil pemeriksaan di antaranya diduga untuk tunjangan hari raya (THR),” kata Tanak dalam konferensi pers di KPK, Kamis (13/4/2023) dini hari. Komisi Pemberantasan Korupsi (KPK) menyatakan prihatin soal adanya penerimaan gratifikasi oleh penyelenggara negara yang bermodus pemberian tunjangan hari raya (THR). KPK Tahan Wali Kota Bandung Yana Mulyana Sementara itu, KPK mengamankan uang sebesar Rp 924 juta dalam pecahan rupiah, dollar Singapura, Ringgit Malaysia, dollar Amerika Serikat, dan Baht Thailand terkait penangkapan terhadap Yaya Mulyana.&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/berita1.txt<span class="w"> </span>--quiet
 </pre></div>
 </div>
 </div>
@@ -719,26 +754,7 @@ berita1.txt.4       100%[===================&gt;]   3.72K  --.-KB/s    in 0.002s
 <h4>implementasi file PDF<a class="headerlink" href="#implementasi-file-pdf" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf<span class="w"> </span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 14:38:46--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
-Length: 86475 (84K) [application/octet-stream]
-Saving to: ‘rangkuman.pdf.3’
-
-
-rangkuman.pdf.3       0%[                    ]       0  --.-KB/s               
-rangkuman.pdf.3     100%[===================&gt;]  84.45K  --.-KB/s    in 0.02s   
-
-2023-04-20 14:38:47 (3.93 MB/s) - ‘rangkuman.pdf.3’ saved [86475/86475]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/rangkuman.pdf<span class="w"> </span>--quiet
 </pre></div>
 </div>
 </div>
@@ -760,48 +776,12 @@ rangkuman.pdf.3     100%[===================&gt;]  84.45K  --.-KB/s    in 0.02s
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outSummary_rangkuman</span><span class="o">=</span><span class="n">ringkasanTeks</span><span class="p">(</span><span class="s1">&#39;rangkuman.pdf&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outSummary_rangkuman</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="p">)))</span>
-<span class="n">outSummary_rangkuman</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Dan setiap kalimat akan diberi skor berdasarkan pentingnya  dalam teks inpu t. Sistem extractive memilih beberapa kalimat terbaik untuk dijadikan ringkasan  Terdapat beberapa yang mempengaruhi penilaian pentingnya suatu kalimat dalam teks, seperti konteks pengguna atau query, lingkungan tempat dokumen input berada, dan genre dokumen. Pendekatan ini dapat digunakan untuk memilih kalimat atau kata-kata yang penting dalam dokumen dan membuat ringkasan yang efektif. Bobot yang diberikan pada setiap kalimat dihitung berdasarkan probabilitas rata-rata kata dalam kalimat tersebut, d an memilih kalimat skor terbaik. Terdapat tiga proses utama , yaitu menciptakan representasi intermediat dari teks input, memberikan skor pada setiap kalimat berdasarkan representasi tersebut, dan memilih beberapa kalimat terbaik sebagai ringkasan. Dalam web summarization, konteks dapat digunakan untuk menentukan kalimat-kalimat penting yang akan disederhanakan. Pendekatan ini menciptakan representasi teks yang dapat digunakan untuk mengurutkan kalimat-kalimat berdasarkan tingkat penting. Pendekatan kedua adalah menggunakan machine learning untuk mengekstraksi kalimat-kalimat yang penting. Sistem ini biasanya menggunakan teks input berupa satu dokumen atau kumpulan dokumen terkait, dan mengambil beberapa kalimat penting dari teks input tersebut untuk dijadikan ringkasan. Pendekatan kata topik menggunakan representasi biner (1 atau 0) untuk menentukan kata mana yang terkait dengan topik, sementara pendekatan kata menggunakan bobot untuk menentukan kepentin gan kata dalam dokumen. Setiap kalimat dalam teks direpresentasikan sebagai sebuah vertex atau simpul, dan setiap hubungan antara kalimat diberi bobot sesuai dengan kemiripan antara dua kalimat tersebut. Klasifikasi dilatih menggunakan korpus yang diannotasi oleh manusia untuk membe dakan kalimat yang harus dimasukkan ke dalam ringkasan, dengan bobot setiap indikator yang berbeda menentukan probabilitas kalimat dimasukkan ke dalam ringkasan. Pendekatan C entroid yang merupakan ringkasan dokumen menggunakan representasi topik dan menetapkan ambang batas untuk menentukan kata yang penting dalam dokumen. Skor kesimpulan sebuah kalimat diukur oleh kesamaan antara kalimat tersebut dan model bahasa menggunakan divergensi KL. Representasi topik digambarkan dengan matriks n x m, dimana setiap baris merupakan kata dari input (n kata) dan setiap kolom adalah kalimat dalam input (m kalimat). Terdapat juga beberapa modifikasi dari pendekatan machine learning standar yang cocok untuk pembuatan ringkasan dokumen, seperti memform ulasikan pembuatan ringkasan sebagai masalah klasifikasi biner dan memilih kalimat dengan skor tertinggi sebagai bagian dari ringkasan yang terbaik. Machine Learning for Summarization  Edmundson di awal telah mengusulkan bahwa berbagai indikator penting dapat digabungkan dalam membuat ringkasan, dan korpus input serta ringkasan yang ditulis oleh manusia dapat digunakan untuk menentukan bobot setiap indikator. SumBasic, suatu sistem yang menggunakan probabilitas kata untuk menentukan kepentingan setiap kalimat dalam dokumen. Terdapat dua kelas pendekatan dalam teknik ini, yaitu adaptasi teknik summarization generik dan pengembangan metode baru untuk kalimat yang relevan. 2.5 Sentence Clustering and Domain-dependent Topics  Merupakan salah satu pendekatan yang digunakan adalah pengelompokan kalimat, di mana k alimat-kalimat serupa dikelompokkan menjadi topik-topik yang penting dalam rangkuman. Prosedur pemilihan kalimat dilakukan secara iteratif menggunakan pendekatan greedy, dimana setiap iterasi, kalimat terbaik yang akan dipilih adalah yang memiliki nilai KL divergence terkecil antara probabilitas kata dalam cluster dan rangkuman yang telah terbentuk. Selecting Summary Sentences  Banyak pendekatan untuk ringkasan memilih konten secara berurutan dari kalim at ke kalimat: kalimat yang paling informatif pertama kali dimasukkan, dan jika memungkinkan, kalimat yang paling informatif berikutnya dimasukkan dalam ringkasan dan seterusnya. Dalam setiap tahap pemilihan, algoritma greedy dipaksa untuk memilih kalimat yang paling relevan dengan pertanyaan pengguna dan minim redundan dengan kalimat yang sudah termasuk dalam ringkasan. Indicator Representations and Machine Learning for Summarization  Ada dua pendekatan dalam mengembangkan sistem ringkasan teks. Pendekatan pertama adalah menggunakan representasi indikator. Sedangkan dalam summarization of blog posts, kalimat-kalimat penting ditentukan berdasarkan frekuensi kata dalam komentar. Pentingnya suatu kalimat dihitung berdasarkan jumlah tanda topik yang terkandung di dalamnya atau sebagai proporsi tanda topik dalam kalimat. Beberapa fitur yang umum digunakan dalam indikator penting antara lain posisi kalimat dalam do kumen, panjang kalimat, kesamaan kalimat dengan judul atau subjudul dokumen, serta kehadiran entitas bernama atau frasa kunci dari daftar tertentu. Query-focused Summarization  Query-focused Summarization merupakan teknik untuk menentukan pentingnya kalimat dalam kont eks input dan relevan dengan pertanyaan pengguna. Pendekatan lain yang disajikan adalah pendekatan rantai leksikal, yang menentukan kepentingan kalimat dengan memanfaatkan hubungan semantik antara kata. Hal ini dapat membantu m embedakan topik dalam satu dokumen dan topik yang sama di antara beberapa dokumen. Pendekatan ini juga dapat digabungkan dengan teknik pembelajaran mesin untuk mengkombinasikan beberapa kalimat penting. Meskipun metode machine learning telah berhasil dalam membuat ringkasan dokumen dalam berbagai domain, ada b eberapa masalah yang harus diatasi, salah satunya adalah kurangnya data yang diannotasi oleh manusia yang dapat digunakan untuk melatih klasifikasi. Representasi intermediat merupakan penyederhanaan teks input menjadi representasi yang lebih sederhana dan dapat diinterpretasikan sebagai topik yang dibahas dalam teks. BTM menggunakan prosedur skor kalimat yang berbeda yaitu Kullback-Lieber (KL) divergence yang dianggap sebagai cara baik untuk m enilai dan memilih kalimat dalam rangkuman karena dapat mengukur seberapa mirip antara rangkuman dan input. Pendekatan pertama menggunakan teknik topic signature wor ds yang diperluas untuk dengan mempertimbangkan probabilitas kata dalam ringkasan. Greedy Approaches: Maximal Marginal Relevance  pendekatan ringkasan Maximal Marginal Relevance (MMR) yang menggunakan metode greedy dalam pemilihan kalimat demi kalimat. Pendekatan kedua menggunakan model bahasa dari teks biografi dan non-biografi untuk mengidentifikasi kalimat biografi dalam dokumen input. Extractive Summarizers adalah sistem yang digunakan untuk menghasilkan ringkasan teks yang singkat dan padat dengan menyampaikan informasi utama dari teks input. Summarization of Scientific Articles  Salah satu metode SSA adalah impact summarization, yaitu mengekstrak kalimat-kalimat dari suatu artikel dapat diukur dengan membandingkan kata kunci yang digunakan dala m artikel tersebut dengan kata kunci pada artikel lain yang mengutip artikel tersebut. Kedua fungsi penilaian kalimat ini didasarkan pada rep resentasi topik yang sama, tetapi nilai yang mereka berikan pada kalimat dapat sangat berbeda. Berdasarkan evaluasi yang dilakukan pada data berita dan rapat, teknik optimisasi global telah terbukti lebih unggul daripada algoritma pemilihan kalimat berdasarkan urutan. Topic Words  Metode pertama adalah penggunaan kata-kata topik untuk mengidentifikasi kata-kata deskriptif dalam sebuah dokumen yang akan diringkas. Metode menggunakan teknik ekstraktif dengan mengambil satu kalimat dari setiap level diskusi. Global Summary Selection  Teknik optimisasi global dapat digunakan untuk menyelesaikan tugas ringkasan yang baru diformulasikan , yaitu memilih ringkasan terbaik secara keseluruhan. Meskipun begitu, pendekatan greedy ini mungkin tidak efektif untuk pemilihan konten yang optimal untuk seluruh ringkasan. Dalam membuat rangkuman, penting untuk memilih pendekatan yang sesuai dengan kebutuhan dan karakteristik dokumen a tau berita yang akan diringkas. Dalam proses LSA, matriks U merepresentasikan topik yang berisi kombinasi kata-kata dari input, matriks Σ adalah matriks diagonal, dan matriks VT merepresentasikan kalimat dalam bentuk topik dari U. Proses reduksi dimensionalitas dilakukan dengan menghapus topik dengan bobot rendah. Dalam metode yang disupervisi, pengambila n keputusan mengenai kalimat yang penting direpresentasikan sebagai masalah klasifikasi biner, dengan setiap kalimat direpresentasikan sebagai daftar potensi indikator penting. Selain itu, bobot dalam satu dokumen dapat dibedakan dengan bobot pada beberapa dokumen. Pendekatan MMR awalnya diusulkan untuk ringkasan berfokus pada pertanyaan dalam konteks temuan informasi, tetapi dapat dengan mudah disesuaik an untuk ringkasan umum. Summarizer dapat menggunakan bahan tambahan untuk menentukan topik yang paling penting dalam dokumen yang akan disederhanakan. Pendekatan ini menggunakan berbagai macam indikator dan menggunakan machine learning untuk menyelesaikan tugas tersebut. Bobot pada setiap hubungan antar kalimat tersebut kemudian dinormalisasi menja di sebuah distribusi probabilitas, sehingga grafik tersebut menjadi sebuah rantai Markov. 2.2 Frequency-driven Approaches  Merupakan p endekatan kata topik dan pendekatan probabilitas kata. Metode ini menggunakan distribusi probabilitas kata yang muncul dalam input untuk bahasa I nggris umum (G), untuk seluruh cluster yang akan diringkas (C), dan untuk setiap dokumen individu dalam cluster tersebut (Di). Namun, pendekatan ini memiliki kelemahan karena setiap kalimat harus ditempatkan dalam satu kelompok saja. Influence of Context  pengaruh konteks dalam proses summarization atau penyederhanaan teks.&#39;
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="implementasi-file-docx">
 <h4>Implementasi file DOCX<a class="headerlink" href="#implementasi-file-docx" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-04-20 14:38:47--  https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.108.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
-Length: 229321 (224K) [application/octet-stream]
-Saving to: ‘reviewjurnal.docx.3’
-
-
-reviewjurnal.docx.3   0%[                    ]       0  --.-KB/s               
-reviewjurnal.docx.3 100%[===================&gt;] 223.95K  --.-KB/s    in 0.03s   
-
-2023-04-20 14:38:47 (7.17 MB/s) - ‘reviewjurnal.docx.3’ saved [229321/229321]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/HamedAyani114/dataset/main/teks/reviewjurnal.docx<span class="w"> </span>--quiet
 </pre></div>
 </div>
 </div>
