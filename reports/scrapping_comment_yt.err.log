@@ -15,14 +15,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-print(a)
+print(b)
 ------------------
 
 
 [0;31m[0m
 [0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-3-bca0e2660b9f>[0m in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0;31m [0mprint[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-3-67e500defa1b>[0m in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0;31m [0mprint[0m[0;34m([0m[0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;31mNameError[0m: name 'a' is not defined
+[0;31mNameError[0m: name 'b' is not defined
 
