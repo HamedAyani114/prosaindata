@@ -15,18 +15,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Word2Vec modeling. 
-# model = Word2Vec(sentences=common_texts, vector_size=100, window=5, min_count=1, workers=4)
-model_X_word2vec = Word2Vec(sentences=X_array, vector_size=100, window=5, min_count=1, workers=4)
+print(a)
 ------------------
 
 
 [0;31m[0m
 [0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-33-7af1facd8dd8>[0m in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [0;31m# Word2Vec modeling.[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      2[0m [0;31m# model = Word2Vec(sentences=common_texts, vector_size=100, window=5, min_count=1, workers=4)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 3[0;31m [0mmodel_X_word2vec[0m [0;34m=[0m [0mWord2Vec[0m[0;34m([0m[0msentences[0m[0;34m=[0m[0mX_array[0m[0;34m,[0m [0mvector_size[0m[0;34m=[0m[0;36m100[0m[0;34m,[0m [0mwindow[0m[0;34m=[0m[0;36m5[0m[0;34m,[0m [0mmin_count[0m[0;34m=[0m[0;36m1[0m[0;34m,[0m [0mworkers[0m[0;34m=[0m[0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-25-bca0e2660b9f>[0m in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0;31m [0mprint[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;31mNameError[0m: name 'X_array' is not defined
+[0;31mNameError[0m: name 'a' is not defined
 

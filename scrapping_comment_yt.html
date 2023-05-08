@@ -378,27 +378,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/6.6 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/6.6 MB</span> <span class=" -Color -Color-Red">7.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.0/6.6 MB</span> <span class=" -Color -Color-Red">27.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━ <span class=" -Color -Color-Green">5.9/6.6 MB</span> <span class=" -Color -Color-Red">55.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">6.5/6.6 MB</span> <span class=" -Color -Color-Red">57.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/6.6 MB</span> <span class=" -Color -Color-Red">39.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/384.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">384.9/384.9 kB</span> <span class=" -Color -Color-Red">22.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/58.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.3/58.3 kB</span> <span class=" -Color -Color-Red">5.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -416,12 +395,16 @@ document.write(`
 <h2>Scrap<a class="headerlink" href="#scrap" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function print&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-3-bca0e2660b9f&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;a&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -444,78 +427,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-4-95f658a403b5&gt;:3: DeprecationWarning: executable_path has been deprecated, please pass in a Service object
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-10-10535b3023fc&gt;:3: DeprecationWarning: executable_path has been deprecated, please pass in a Service object
   with Chrome(executable_path=r&#39;C:\Program Files\chromedriver.exe&#39;) as driver:
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">WebDriverException</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-4-95f658a403b5&gt;</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data</span><span class="o">=</span><span class="p">[]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">with</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;C:\Program Files\chromedriver.exe&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">driver</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.youtube.com/watch?v=rbZ3Wv_hLJA&amp;ab_channel=CNNIndonesia&quot;</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/chrome/webdriver.py</span> in <span class="ni">__init__</span><span class="nt">(self, executable_path, port, options, service_args, desired_capabilities, service_log_path, chrome_options, service, keep_alive)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>         <span class="n">service</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">DriverFinder</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> 
-<span class="ne">---&gt; </span><span class="mi">84</span>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>             <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="p">[</span><span class="s2">&quot;browserName&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>             <span class="s2">&quot;goog&quot;</span><span class="p">,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/chromium/webdriver.py</span> in <span class="ni">__init__</span><span class="nt">(self, browser_name, vendor_prefix, port, options, service_args, desired_capabilities, service_log_path, service, keep_alive)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span> 
-<span class="g g-Whitespace">    </span><span class="mi">103</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                 <span class="n">command_executor</span><span class="o">=</span><span class="n">ChromiumRemoteConnection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>                     <span class="n">remote_server_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">service_url</span><span class="p">,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/remote/webdriver.py</span> in <span class="ni">__init__</span><span class="nt">(self, command_executor, desired_capabilities, browser_profile, proxy, keep_alive, file_detector, options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_authenticator_id</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span>         <span class="bp">self</span><span class="o">.</span><span class="n">start_client</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">286</span>         <span class="bp">self</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">capabilities</span><span class="p">,</span> <span class="n">browser_profile</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> 
-<span class="g g-Whitespace">    </span><span class="mi">288</span>     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/remote/webdriver.py</span> in <span class="ni">start_session</span><span class="nt">(self, capabilities, browser_profile)</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="n">w3c_caps</span> <span class="o">=</span> <span class="n">_make_w3c_caps</span><span class="p">(</span><span class="n">capabilities</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;capabilities&quot;</span><span class="p">:</span> <span class="n">w3c_caps</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">378</span>         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">Command</span><span class="o">.</span><span class="n">NEW_SESSION</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="k">if</span> <span class="s2">&quot;sessionId&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>             <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/remote/webdriver.py</span> in <span class="ni">execute</span><span class="nt">(self, driver_command, params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_executor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">driver_command</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span>         <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">440</span>             <span class="bp">self</span><span class="o">.</span><span class="n">error_handler</span><span class="o">.</span><span class="n">check_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>             <span class="n">response</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unwrap_value</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>             <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/selenium/webdriver/remote/errorhandler.py</span> in <span class="ni">check_response</span><span class="nt">(self, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>                 <span class="n">alert_text</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;alert&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>             <span class="k">raise</span> <span class="n">exception_class</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">stacktrace</span><span class="p">,</span> <span class="n">alert_text</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]  # mypy is not smart enough here</span>
-<span class="ne">--&gt; </span><span class="mi">245</span>         <span class="k">raise</span> <span class="n">exception_class</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">stacktrace</span><span class="p">)</span>
-
-<span class="ne">WebDriverException</span>: Message: unknown error: cannot find Chrome binary
-<span class="ne">Stacktrace</span>:
-<span class="c1">#0 0x56297a3f9133 &lt;unknown&gt;</span>
-<span class="c1">#1 0x56297a12d966 &lt;unknown&gt;</span>
-<span class="c1">#2 0x56297a154b57 &lt;unknown&gt;</span>
-<span class="c1">#3 0x56297a15307b &lt;unknown&gt;</span>
-<span class="c1">#4 0x56297a1929ad &lt;unknown&gt;</span>
-<span class="c1">#5 0x56297a19218f &lt;unknown&gt;</span>
-<span class="c1">#6 0x56297a1899a3 &lt;unknown&gt;</span>
-<span class="c1">#7 0x56297a15e46a &lt;unknown&gt;</span>
-<span class="c1">#8 0x56297a15f55e &lt;unknown&gt;</span>
-<span class="c1">#9 0x56297a3b8cae &lt;unknown&gt;</span>
-<span class="c1">#10 0x56297a3bc8fe &lt;unknown&gt;</span>
-<span class="c1">#11 0x56297a3c5f20 &lt;unknown&gt;</span>
-<span class="c1">#12 0x56297a3bd923 &lt;unknown&gt;</span>
-<span class="c1">#13 0x56297a390c0e &lt;unknown&gt;</span>
-<span class="c1">#14 0x56297a3e0b08 &lt;unknown&gt;</span>
-<span class="c1">#15 0x56297a3e0c97 &lt;unknown&gt;</span>
-<span class="c1">#16 0x56297a3f1113 &lt;unknown&gt;</span>
-<span class="c1">#17 0x7f1feb003609 start_thread</span>
 </pre></div>
 </div>
 </div>
