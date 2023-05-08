@@ -30,8 +30,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['temppta=[]', '# data=0', 'for i in range(152, 173):', "  print('Page -', i)", '  webpage = requests.get(link+str(i))']
+['conn = psycopg2.connect(', '    database="prosain200411100114",', '    user="postgres",', '    password="admin",', '    host="0.tcp.ap.ngrok.io",']
 ...
-["    nama = it.span.text.replace('Penulis : ', '')", '', '    temppta.append([nim, nama, judul, abstrak])', '', "print('Totaldata', len(temppta))"]
+['', 'sl = cur.fetchall()', '', "sl=pd.DataFrame(sl,columns=['SepalLength'])", 'sl.head()']
 -------------------
 
