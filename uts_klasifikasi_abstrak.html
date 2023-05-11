@@ -424,6 +424,10 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="uts-klasifikasi-abstrak-pta">
 <h1>UTS (KLASIFIKASI ABSTRAK PTA)<a class="headerlink" href="#uts-klasifikasi-abstrak-pta" title="Permalink to this heading">#</a></h1>
+<p>Klasifikasi abstrak merupakan proses penggolongan sebuah abstrak kedalam suatu kelas tertentu, pada uts ini ditentukan abstrak akan diklasifikasikan kedalam 3 kelas RPL, Komputasi dan PBA.</p>
+<p>Proses pengambilan data abstrak dilakukan pada tugas 1 yaitu Crawling Web. berikut link : <a class="reference external" href="https://hamedayani114.github.io/prosaindata/tugas1_webscrapper.html">Tugas 1 Crawling Web</a></p>
+<p>setelah proses crawling, data abstrak yang didapatkan akan di beri label kelas sesuai isi secara manual yang akan digunakan sebagai dataset learning.</p>
+<p>proses klasifikasi, mulai dari prepocessing data (pembersihan data, tokenisasi kata, stopword, steamming). selanjutnya proses pembobotan kata dengan metode tfidf, proses reduksi dimensi (mengurangi fitur agar proses learning tidak berat). proses learning, testing dan evaluasi hasil model/</p>
 <div class="section" id="read-data-pta-mentah">
 <h2>Read data PTA mentah<a class="headerlink" href="#read-data-pta-mentah" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -447,7 +451,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d396b857-b575-4b99-8ea3-46dee135638b">
+  <div id="df-b0037140-4d5b-4046-bcdf-6da9d6f52716">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -518,7 +522,7 @@ document.write(`
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d396b857-b575-4b99-8ea3-46dee135638b')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b0037140-4d5b-4046-bcdf-6da9d6f52716')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -569,12 +573,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-d396b857-b575-4b99-8ea3-46dee135638b button.colab-df-convert');
+          document.querySelector('#df-b0037140-4d5b-4046-bcdf-6da9d6f52716 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d396b857-b575-4b99-8ea3-46dee135638b');
+          const element = document.querySelector('#df-b0037140-4d5b-4046-bcdf-6da9d6f52716');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -748,7 +752,7 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d89890ee-bf14-48fd-8d80-59666f00241c">
+  <div id="df-2c6fa61a-6029-4ea6-ac82-798f93ef1409">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -787,7 +791,7 @@ dtype: int64
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d89890ee-bf14-48fd-8d80-59666f00241c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-2c6fa61a-6029-4ea6-ac82-798f93ef1409')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -838,12 +842,12 @@ dtype: int64
 
       <script>
         const buttonEl =
-          document.querySelector('#df-d89890ee-bf14-48fd-8d80-59666f00241c button.colab-df-convert');
+          document.querySelector('#df-2c6fa61a-6029-4ea6-ac82-798f93ef1409 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d89890ee-bf14-48fd-8d80-59666f00241c');
+          const element = document.querySelector('#df-2c6fa61a-6029-4ea6-ac82-798f93ef1409');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -876,7 +880,7 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-7891ee1a-6205-4ce9-babd-722e674a3909">
+  <div id="df-bb152542-8175-4d25-a418-d1959f5830c6">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -907,7 +911,7 @@ dtype: int64
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-7891ee1a-6205-4ce9-babd-722e674a3909')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-bb152542-8175-4d25-a418-d1959f5830c6')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -958,12 +962,12 @@ dtype: int64
 
       <script>
         const buttonEl =
-          document.querySelector('#df-7891ee1a-6205-4ce9-babd-722e674a3909 button.colab-df-convert');
+          document.querySelector('#df-bb152542-8175-4d25-a418-d1959f5830c6 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-7891ee1a-6205-4ce9-babd-722e674a3909');
+          const element = document.querySelector('#df-bb152542-8175-4d25-a418-d1959f5830c6');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1093,8 +1097,8 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/209.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">204.8/209.7 kB</span> <span class=" -Color -Color-Red">6.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 kB</span> <span class=" -Color -Color-Red">4.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">204.8/209.7 kB</span> <span class=" -Color -Color-Red">6.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 kB</span> <span class=" -Color -Color-Red">5.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -1112,29 +1116,12 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-2-bca0e2660b9f&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;a&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df[&#39;abstrak_tokens&#39;]=df[&#39;abstrak_tokens&#39;].progress_apply(lambda x: stemmer.stem(&#39; &#39;.join(x)).split(&#39; &#39;))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 809/809 [07:11&lt;00:00,  1.88it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 809/809 [12:39&lt;00:00,  1.06it/s]
 </pre></div>
 </div>
 </div>
@@ -1169,7 +1156,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-161e8d28-f415-405a-a0a3-421336891e8a">
+  <div id="df-d67628bc-f6a3-452f-a8be-fbc7ab352218">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1258,7 +1245,7 @@ Name: abstrak_tokens, Length: 809, dtype: object
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-161e8d28-f415-405a-a0a3-421336891e8a')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d67628bc-f6a3-452f-a8be-fbc7ab352218')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1309,12 +1296,12 @@ Name: abstrak_tokens, Length: 809, dtype: object
 
       <script>
         const buttonEl =
-          document.querySelector('#df-161e8d28-f415-405a-a0a3-421336891e8a button.colab-df-convert');
+          document.querySelector('#df-d67628bc-f6a3-452f-a8be-fbc7ab352218 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-161e8d28-f415-405a-a0a3-421336891e8a');
+          const element = document.querySelector('#df-d67628bc-f6a3-452f-a8be-fbc7ab352218');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1366,7 +1353,6 @@ Name: Label, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
-<span class="c1"># X_array=dfnw[&#39;abstrak_tokens&#39;].apply(lambda x: word_tokenize(x))</span>
 </pre></div>
 </div>
 </div>
@@ -1388,6 +1374,7 @@ Name: Label, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Word2Vec modeling. </span>
 <span class="c1"># model = Word2Vec(sentences=common_texts, vector_size=100, window=5, min_count=1, workers=4)</span>
+<span class="n">X_array</span><span class="o">=</span><span class="n">dfnw</span><span class="p">[</span><span class="s1">&#39;abstrak_tokens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">model_X_word2vec</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="o">=</span><span class="n">X_array</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1395,21 +1382,21 @@ Name: Label, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_X_word2vec</span><span class="o">.</span><span class="n">predict_output_word</span><span class="p">(</span><span class="s2">&quot;abjad&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_X_word2vec</span><span class="o">.</span><span class="n">predict_output_word</span><span class="p">(</span><span class="s2">&quot;klasifikasi&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;x&#39;, 0.00022338174),
- (&#39;c&#39;, 0.00018961739),
- (&#39;baik&#39;, 0.00017294916),
- (&#39;huruf&#39;, 0.00017141516),
- (&#39;menggunka&#39;, 0.00017073861),
- (&#39;means&#39;, 0.00017066435),
- (&#39;penjadwaln&#39;, 0.00017020087),
- (&#39;k&#39;, 0.00016951741),
- (&#39;bahasa&#39;, 0.00016903484),
- (&#39;madura&#39;, 0.00016851537)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;klasifikasi&#39;, 0.0002859196),
+ (&#39;banding&#39;, 0.00027492002),
+ (&#39;akurasi&#39;, 0.00027444697),
+ (&#39;baik&#39;, 0.00027335258),
+ (&#39;ekstraksi&#39;, 0.00026830717),
+ (&#39;e&#39;, 0.00026305078),
+ (&#39;distribution&#39;, 0.00025800578),
+ (&#39;manual&#39;, 0.00025729171),
+ (&#39;blowfish&#39;, 0.0002556189),
+ (&#39;dapat&#39;, 0.00025522572)]
 </pre></div>
 </div>
 </div>
@@ -1479,7 +1466,7 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/296afa6190bcbdb0c263de17074750d07d93aac67a77fd959c69803d6367b9ee.png" src="_images/296afa6190bcbdb0c263de17074750d07d93aac67a77fd959c69803d6367b9ee.png" />
+<img alt="_images/c3965e98788ee98fd64f542527bbd0d71e0ac1c2b7ba81515c7eeece7881f62e.png" src="_images/c3965e98788ee98fd64f542527bbd0d71e0ac1c2b7ba81515c7eeece7881f62e.png" />
 </div>
 </div>
 </div>
@@ -1494,7 +1481,7 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape X_tfidf : (809, 7269)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape X_tfidf : (809, 6442)
 </pre></div>
 </div>
 </div>
@@ -1525,7 +1512,7 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(809, 7269)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(809, 6442)
 </pre></div>
 </div>
 </div>
@@ -1551,6 +1538,7 @@ Name: Label, dtype: int64
 </div>
 </div>
 </div>
+<p>proses pca mengurangi dari 6442 fitur, menjadi 100 fitur</p>
 </div>
 <div class="section" id="split-data">
 <h2>Split Data<a class="headerlink" href="#split-data" title="Permalink to this heading">#</a></h2>
@@ -1587,10 +1575,10 @@ Name: Label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8078817733990148
-Precision score :  0.8367632910470145
-Recall score :  0.8078817733990148
-F1 score :  0.8151847476391088
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.812807881773399
+Precision score :  0.8352532306457178
+Recall score :  0.812807881773399
+F1 score :  0.819066431680256
 </pre></div>
 </div>
 </div>
@@ -1606,7 +1594,7 @@ F1 score :  0.8151847476391088
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a5b44267ccacf696e83e3664f99eba79c7a11625ec91e05d1e1007824bc60bf.png" src="_images/0a5b44267ccacf696e83e3664f99eba79c7a11625ec91e05d1e1007824bc60bf.png" />
+<img alt="_images/f0d21b5d62e62da901a6f6ca03c396e689275227b9a1db3f6fe02a9de0094d30.png" src="_images/f0d21b5d62e62da901a6f6ca03c396e689275227b9a1db3f6fe02a9de0094d30.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1620,12 +1608,12 @@ F1 score :  0.8151847476391088
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-         PBA       0.85      0.65      0.73        17
-         RPL       0.57      0.81      0.67        43
-   komputasi       0.91      0.83      0.87       143
+         PBA       0.79      0.65      0.71        17
+         RPL       0.59      0.79      0.67        43
+   komputasi       0.92      0.84      0.88       143
 
     accuracy                           0.81       203
-   macro avg       0.78      0.76      0.76       203
+   macro avg       0.76      0.76      0.75       203
 weighted avg       0.84      0.81      0.82       203
 </pre></div>
 </div>
@@ -1653,10 +1641,10 @@ weighted avg       0.84      0.81      0.82       203
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8275862068965517
-Precision score :  0.8288002894501452
-Recall score :  0.8275862068965517
-F1 score :  0.8242518824072339
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score :  0.8226600985221675
+Precision score :  0.8247767574273921
+Recall score :  0.8226600985221675
+F1 score :  0.8183237822480701
 </pre></div>
 </div>
 </div>
@@ -1672,7 +1660,7 @@ F1 score :  0.8242518824072339
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3c87c733990fff08f57f29864a4d277ce0e3164f29eb212d59099916eba9032e.png" src="_images/3c87c733990fff08f57f29864a4d277ce0e3164f29eb212d59099916eba9032e.png" />
+<img alt="_images/2a0510a7ac2e1a5bcd5ee813bd4bb2212630e62a917415ed831a80fe76f3268d.png" src="_images/2a0510a7ac2e1a5bcd5ee813bd4bb2212630e62a917415ed831a80fe76f3268d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1686,13 +1674,13 @@ F1 score :  0.8242518824072339
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-         PBA       0.80      0.47      0.59        17
-         RPL       0.68      0.74      0.71        43
-   komputasi       0.88      0.90      0.89       143
+         PBA       0.78      0.41      0.54        17
+         RPL       0.67      0.77      0.72        43
+   komputasi       0.88      0.89      0.88       143
 
-    accuracy                           0.83       203
-   macro avg       0.79      0.70      0.73       203
-weighted avg       0.83      0.83      0.82       203
+    accuracy                           0.82       203
+   macro avg       0.78      0.69      0.71       203
+weighted avg       0.82      0.82      0.82       203
 </pre></div>
 </div>
 </div>
