@@ -406,7 +406,7 @@ document.write(`
 <h1>Tugas 1 (Web Scrapping)<a class="headerlink" href="#tugas-1-web-scrapping" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -418,34 +418,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>snscrape
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install snscrape --quiet
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting snscrape
-  Downloading snscrape-0.6.2.20230320-py3-none-any.whl (71 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/71.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">71.8/71.8 kB</span> <span class=" -Color -Color-Red">8.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: requests[socks] in /usr/local/lib/python3.10/dist-packages (from snscrape) (2.27.1)
-Requirement already satisfied: lxml in /usr/local/lib/python3.10/dist-packages (from snscrape) (4.9.2)
-Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (from snscrape) (4.11.2)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from snscrape) (3.12.0)
-Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4-&gt;snscrape) (2.4.1)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;snscrape) (1.26.15)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;snscrape) (2022.12.7)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;snscrape) (2.0.12)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;snscrape) (3.4)
-Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;snscrape) (1.7.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: snscrape
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed snscrape-0.6.2.20230320
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/71.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">71.8/71.8 kB</span> <span class=" -Color -Color-Red">5.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
 </pre></div>
 </div>
 </div>
@@ -454,16 +434,16 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 <h2>PTA<a class="headerlink" href="#pta" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">link</span><span class="o">=</span><span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10/&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">link</span><span class="o">=</span><span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10/&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temppta</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temppta</span><span class="o">=</span><span class="p">[]</span>
 <span class="c1"># data=0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">152</span><span class="p">,</span> <span class="mi">153</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">152</span><span class="p">,</span> <span class="mi">173</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Page -&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
   <span class="n">webpage</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
   <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">webpage</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
@@ -489,16 +469,34 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page - 152
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Totaldata 5
+Page - 153
+Page - 154
+Page - 155
+Page - 156
+Page - 157
+Page - 158
+Page - 159
+Page - 160
+Page - 161
+Page - 162
+Page - 163
+Page - 164
+Page - 165
+Page - 166
+Page - 167
+Page - 168
+Page - 169
+Page - 170
+Page - 171
+Page - 172
+Totaldata 103
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headCsvPta</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NIM&#39;</span><span class="p">,</span> <span class="s1">&#39;Nama&#39;</span><span class="p">,</span> <span class="s1">&#39;Judul&#39;</span><span class="p">,</span> <span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">headCsvPta</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NIM&#39;</span><span class="p">,</span> <span class="s1">&#39;Nama&#39;</span><span class="p">,</span> <span class="s1">&#39;Judul&#39;</span><span class="p">,</span> <span class="s1">&#39;Abstrak&#39;</span><span class="p">]</span>
 <span class="n">dfPta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">temppta</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headCsvPta</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -506,13 +504,13 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfPta</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfPta</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-c5f31237-dd85-457e-98ad-c45aae9301ca">
+  <div id="df-a8d38a6f-c178-41ad-b613-84ad8353589f">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -574,10 +572,53 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
       <td>SISTEM PENDUKUNG KEPUTUSAN UNTUK MENENTUKAN TE...</td>
       <td>Pengobatan sendiri (Swamedikasi) lebih banyak ...</td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>160411100032</td>
+      <td>Rachmad Agung Pambudi</td>
+      <td>PENERAPAN ALGORITMA LONG-SHORT TERM MEMORY UNT...</td>
+      <td>Investasi saham selama ini memiliki resiko ker...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>160411100182</td>
+      <td>Nadila Hidayanti</td>
+      <td>SISTEM PENCARIAN TEKS AL-QURAN TERJEMAHAN BERB...</td>
+      <td>Information Retrieval (IR) merupakan pengambil...</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>160411100077</td>
+      <td>Afni Sakinah</td>
+      <td>KLASIFIKASI KOMPLEKSITAS VISUAL CITRA SAMPAH M...</td>
+      <td>Klasifikasi citra merupakan proses pengelompok...</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>160411100084</td>
+      <td>Friska Fatmawatiningrum</td>
+      <td>IDENTIFIKASI BINER ATRIBUT PEJALAN KAKI MENGGU...</td>
+      <td>Identifikasi atribut pejalan kaki merupakan sa...</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>160411100044</td>
+      <td>Dian Wibowo</td>
+      <td>DETEKSI OBJEK MANUSIA BERBASIS ONE STAGE DETEC...</td>
+      <td>Topik deteksi objek telah menarik perhatian ya...</td>
+    </tr>
   </tbody>
 </table>
+<p>103 rows × 4 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c5f31237-dd85-457e-98ad-c45aae9301ca')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-a8d38a6f-c178-41ad-b613-84ad8353589f')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -628,12 +669,12 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 
       <script>
         const buttonEl =
-          document.querySelector('#df-c5f31237-dd85-457e-98ad-c45aae9301ca button.colab-df-convert');
+          document.querySelector('#df-a8d38a6f-c178-41ad-b613-84ad8353589f button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-c5f31237-dd85-457e-98ad-c45aae9301ca');
+          const element = document.querySelector('#df-a8d38a6f-c178-41ad-b613-84ad8353589f');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -656,7 +697,7 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert</span>
 <span class="n">dfPta</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Pta.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">dfPta</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;Pta.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -668,94 +709,45 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 <h2>Twitter<a class="headerlink" href="#twitter" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snscrape.modules.twitter</span> <span class="k">as</span> <span class="nn">sntwitter</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import snscrape.modules.twitter as sntwitter</span>
 
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;ridwan kamil presiden since:2022-01-01 until:2023-02-20&quot;</span>
-<span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="c1"># query = &quot;ridwan kamil presiden since:2022-01-01 until:2023-02-20&quot;</span>
+<span class="c1"># tweets = []</span>
+<span class="c1"># limit = 2000</span>
 
 
-<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">sntwitter</span><span class="o">.</span><span class="n">TwitterSearchScraper</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">():</span>
+<span class="c1"># for tweet in sntwitter.TwitterSearchScraper(query).get_items():</span>
     
-    <span class="c1"># print(vars(tweet))</span>
-    <span class="c1"># break</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">)</span> <span class="o">==</span> <span class="n">limit</span><span class="p">:</span>
-        <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># td=tweet.date</span>
-        <span class="c1"># td=td.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)</span>
-        <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">([</span> <span class="n">tweet</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)])</span>
+<span class="c1">#     # print(vars(tweet))</span>
+<span class="c1">#     # break</span>
+<span class="c1">#     if len(tweets) == limit:</span>
+<span class="c1">#         break</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         # td=tweet.date</span>
+<span class="c1">#         # td=td.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)</span>
+<span class="c1">#         tweets.append([ tweet.username, tweet.content, tweet.user.location, tweet.date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:snscrape.base:Error retrieving https://api.twitter.com/2/search/adaptive.json?include_profile_interstitial_type=1&amp;include_blocking=1&amp;include_blocked_by=1&amp;include_followed_by=1&amp;include_want_retweets=1&amp;include_mute_edge=1&amp;include_can_dm=1&amp;include_can_media_tag=1&amp;include_ext_has_nft_avatar=1&amp;include_ext_is_blue_verified=1&amp;include_ext_verified_type=1&amp;skip_status=1&amp;cards_platform=Web-12&amp;include_cards=1&amp;include_ext_alt_text=true&amp;include_ext_limited_action_results=false&amp;include_quote_count=true&amp;include_reply_count=1&amp;tweet_mode=extended&amp;include_ext_collab_control=true&amp;include_ext_views=true&amp;include_entities=true&amp;include_user_entities=true&amp;include_ext_media_color=true&amp;include_ext_media_availability=true&amp;include_ext_sensitive_media_warning=true&amp;include_ext_trusted_friends_metadata=true&amp;send_error_codes=true&amp;simple_quoted_tweet=true&amp;q=ridwan+kamil+presiden+since%3A2022-01-01+until%3A2023-02-20&amp;tweet_search_mode=live&amp;count=20&amp;query_source=spelling_expansion_revert_click&amp;pc=1&amp;spelling_corrections=1&amp;include_ext_edit_control=true&amp;ext=mediaStats%2ChighlightedLabel%2ChasNftAvatar%2CvoiceInfo%2Cenrichments%2CsuperFollowMetadata%2CunmentionInfo%2CeditControl%2Ccollab_control%2Cvibe: blocked (403)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRITICAL:snscrape.base:4 requests to https://api.twitter.com/2/search/adaptive.json?include_profile_interstitial_type=1&amp;include_blocking=1&amp;include_blocked_by=1&amp;include_followed_by=1&amp;include_want_retweets=1&amp;include_mute_edge=1&amp;include_can_dm=1&amp;include_can_media_tag=1&amp;include_ext_has_nft_avatar=1&amp;include_ext_is_blue_verified=1&amp;include_ext_verified_type=1&amp;skip_status=1&amp;cards_platform=Web-12&amp;include_cards=1&amp;include_ext_alt_text=true&amp;include_ext_limited_action_results=false&amp;include_quote_count=true&amp;include_reply_count=1&amp;tweet_mode=extended&amp;include_ext_collab_control=true&amp;include_ext_views=true&amp;include_entities=true&amp;include_user_entities=true&amp;include_ext_media_color=true&amp;include_ext_media_availability=true&amp;include_ext_sensitive_media_warning=true&amp;include_ext_trusted_friends_metadata=true&amp;send_error_codes=true&amp;simple_quoted_tweet=true&amp;q=ridwan+kamil+presiden+since%3A2022-01-01+until%3A2023-02-20&amp;tweet_search_mode=live&amp;count=20&amp;query_source=spelling_expansion_revert_click&amp;pc=1&amp;spelling_corrections=1&amp;include_ext_edit_control=true&amp;ext=mediaStats%2ChighlightedLabel%2ChasNftAvatar%2CvoiceInfo%2Cenrichments%2CsuperFollowMetadata%2CunmentionInfo%2CeditControl%2Ccollab_control%2Cvibe failed, giving up.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRITICAL:snscrape.base:Errors: blocked (403), blocked (403), blocked (403), blocked (403)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">ScraperException</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-8-121f25d0e84b&gt;</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">sntwitter</span><span class="o">.</span><span class="n">TwitterSearchScraper</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="c1"># print(vars(tweet))</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">get_items</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1659</span>                 <span class="k">del</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;cursor&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1660</span> 
-<span class="ne">-&gt; </span><span class="mi">1661</span>                 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_api_data</span><span class="p">(</span><span class="s1">&#39;https://api.twitter.com/2/search/adaptive.json&#39;</span><span class="p">,</span> <span class="n">_TwitterAPIType</span><span class="o">.</span><span class="n">V2</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">paginationParams</span><span class="p">,</span> <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1662</span>                         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_v2_timeline_instructions_to_tweets_or_users</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1663</span> 
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">_iter_api_data</span><span class="nt">(self, endpoint, apiType, params, paginationParams, cursor, direction)</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>                 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>                         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieving scroll page </span><span class="si">{</span><span class="n">cursor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">761</span>                         <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_data</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">apiType</span><span class="p">,</span> <span class="n">reqParams</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span>                         <span class="k">yield</span> <span class="n">obj</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span> 
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">_get_api_data</span><span class="nt">(self, endpoint, apiType, params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span>                 <span class="k">if</span> <span class="n">apiType</span> <span class="ow">is</span> <span class="n">_TwitterAPIType</span><span class="o">.</span><span class="n">GRAPHQL</span><span class="p">:</span>
-<span class="nn">    726                         params = urllib.parse.urlencode({k: json.dumps(v, separators = (&#39;,&#39;, &#39;:&#39;)) for k, v</span> in <span class="ni">params.items</span><span class="nt">()}, quote_via = urllib.parse.quote)</span>
-<span class="ne">--&gt; </span><span class="mi">727</span>                 <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apiHeaders</span><span class="p">,</span> <span class="n">responseOkCallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_api_response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>                         <span class="n">obj</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/snscrape/base.py</span> in <span class="ni">_get</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span> 
-<span class="g g-Whitespace">    </span><span class="mi">250</span>         <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">251</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span> 
-<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="k">def</span> <span class="nf">_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/snscrape/base.py</span> in <span class="ni">_request</span><span class="nt">(self, method, url, params, data, headers, timeout, responseOkCallback, allowRedirects, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">245</span>                         <span class="n">_logger</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span>                         <span class="n">_logger</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Errors: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">247</span>                         <span class="k">raise</span> <span class="n">ScraperException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span>                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Reached unreachable code&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span> 
-
-<span class="ne">ScraperException</span>: 4 requests to https://api.twitter.com/2/search/adaptive.json?include_profile_interstitial_type=1&amp;include_blocking=1&amp;include_blocked_by=1&amp;include_followed_by=1&amp;include_want_retweets=1&amp;include_mute_edge=1&amp;include_can_dm=1&amp;include_can_media_tag=1&amp;include_ext_has_nft_avatar=1&amp;include_ext_is_blue_verified=1&amp;include_ext_verified_type=1&amp;skip_status=1&amp;cards_platform=Web-12&amp;include_cards=1&amp;include_ext_alt_text=true&amp;include_ext_limited_action_results=false&amp;include_quote_count=true&amp;include_reply_count=1&amp;tweet_mode=extended&amp;include_ext_collab_control=true&amp;include_ext_views=true&amp;include_entities=true&amp;include_user_entities=true&amp;include_ext_media_color=true&amp;include_ext_media_availability=true&amp;include_ext_sensitive_media_warning=true&amp;include_ext_trusted_friends_metadata=true&amp;send_error_codes=true&amp;simple_quoted_tweet=true&amp;q=ridwan+kamil+presiden+since%3A2022-01-01+until%3A2023-02-20&amp;tweet_search_mode=live&amp;count=20&amp;query_source=spelling_expansion_revert_click&amp;pc=1&amp;spelling_corrections=1&amp;include_ext_edit_control=true&amp;ext=mediaStats%2ChighlightedLabel%2ChasNftAvatar%2CvoiceInfo%2Cenrichments%2CsuperFollowMetadata%2CunmentionInfo%2CeditControl%2Ccollab_control%2Cvibe failed, giving up.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-9-121f25d0e84b&gt;:17: FutureWarning: username is deprecated, use user.username instead
+  tweets.append([ tweet.username, tweet.content, tweet.user.location, tweet.date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)])
+&lt;ipython-input-9-121f25d0e84b&gt;:17: FutureWarning: content is deprecated, use rawContent instead
+  tweets.append([ tweet.username, tweet.content, tweet.user.location, tweet.date.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfTwit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitts&#39;</span><span class="p">,</span><span class="s1">&#39;Lokasi&#39;</span><span class="p">,</span> <span class="s1">&#39;Datetime&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfTwit = pd.DataFrame(tweets, columns=[ &#39;Username&#39;, &#39;Twitts&#39;,&#39;Lokasi&#39;, &#39;Datetime&#39;])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfTwit</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfTwit</span>
 </pre></div>
 </div>
 </div>
@@ -948,9 +940,9 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert</span>
-<span class="n">dfTwit</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Tweets.csv&#39;</span><span class="p">)</span>
-<span class="n">dfTwit</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;Tweets.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># # convert</span>
+<span class="c1"># dfTwit.to_csv(&#39;Tweets.csv&#39;, index=False)</span>
+<span class="c1"># dfTwit.to_excel(&#39;Tweets.xlsx&#39;, index=False)</span>
 </pre></div>
 </div>
 </div>
@@ -960,14 +952,14 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 <h2>Berita<a class="headerlink" href="#berita" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linkberita</span><span class="o">=</span><span class="s1">&#39;https://news.kompas.com/search/all/&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">linkberita</span><span class="o">=</span><span class="s1">&#39;https://news.kompas.com/search/all/&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berita</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">berita</span><span class="o">=</span><span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Page -&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
@@ -1006,14 +998,14 @@ Page - 8
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfBerita</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">berita</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;Judul&#39;</span><span class="p">,</span> <span class="s1">&#39;Isi&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfBerita</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">berita</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;Judul&#39;</span><span class="p">,</span> <span class="s1">&#39;Isi&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfBerita</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfBerita</span>
 </pre></div>
 </div>
 </div>
@@ -1182,9 +1174,9 @@ Page - 8
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert</span>
-<span class="n">dfBerita</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Berita.csv&#39;</span><span class="p">)</span>
-<span class="n">dfBerita</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;Berita.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert</span>
+<span class="n">dfBerita</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Berita.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># dfBerita.to_excel(&#39;Berita.xlsx&#39;, index=False)</span>
 </pre></div>
 </div>
 </div>
