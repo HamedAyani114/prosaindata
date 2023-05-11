@@ -414,6 +414,8 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="tugas-2-getdata-server-and-create-pipelines">
 <h1>Tugas 2 (GetData Server And Create PipeLines)<a class="headerlink" href="#tugas-2-getdata-server-and-create-pipelines" title="Permalink to this heading">#</a></h1>
+<p>untuk menjalankan code dibawah, diperlukan server database. implementasi saya menggunakan virtual server database local yang terconnect ke <strong>ngrok</strong>. untuk dapat mengakses host dibutuhkan sever yang harus berjalan terus.</p>
+<p>untuk mengatasi hal tersebut saya ambil data dari csv github yang sebelumnya sudah saya dapatkan dari pengambilan dari server postgre, elephantpg, mysql, dan sqlserver.</p>
 <div class="section" id="get-data-server">
 <h2>Get Data Server<a class="headerlink" href="#get-data-server" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -424,8 +426,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">340.6/340.6 kB</span> <span class=" -Color -Color-Red">10.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">27.4/27.4 MB</span> <span class=" -Color -Color-Red">40.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">343.5/343.5 kB</span> <span class=" -Color -Color-Red">7.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">27.4/27.4 MB</span> <span class=" -Color -Color-Red">54.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -442,26 +444,33 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_iris</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/HamedAyani114/dataset/main/csv/Iris.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="postgresql-local-sepallength">
 <h3>PostgreSQL Local (SepalLength)<a class="headerlink" href="#postgresql-local-sepallength" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;prosain200411100114&quot;</span><span class="p">,</span>
-    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.tcp.ap.ngrok.io&quot;</span><span class="p">,</span>
-    <span class="n">port</span><span class="o">=</span><span class="s2">&quot;19504&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># conn = psycopg2.connect(</span>
+<span class="c1">#     database=&quot;prosain200411100114&quot;,</span>
+<span class="c1">#     user=&quot;postgres&quot;,</span>
+<span class="c1">#     password=&quot;admin&quot;,</span>
+<span class="c1">#     host=&quot;0.tcp.ap.ngrok.io&quot;,</span>
+<span class="c1">#     port=&quot;19504&quot;</span>
+<span class="c1"># )</span>
 
-<span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="c1"># cur = conn.cursor()</span>
 
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT sepallength FROM public.iris ORDER BY id&quot;</span><span class="p">)</span>
+<span class="c1"># cur.execute(&quot;SELECT sepallength FROM public.iris ORDER BY id&quot;)</span>
 
-<span class="n">sl</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="c1"># sl = cur.fetchall()</span>
 
-<span class="n">sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sl</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SepalLength&#39;</span><span class="p">])</span>
-<span class="n">sl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># sl=pd.DataFrame(sl,columns=[&#39;SepalLength&#39;])</span>
+<span class="c1"># sl.head()</span>
 </pre></div>
 </div>
 </div>
@@ -596,22 +605,22 @@ document.write(`
 <h3>PostgreSQL Elephant (SepalWidth)<a class="headerlink" href="#postgresql-elephant-sepalwidth" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;mdihcbmr&quot;</span><span class="p">,</span>
-    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;mdihcbmr&quot;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;P3LmyjuPn0faQQ_nRoTV0EBrhxu4jn1D&quot;</span><span class="p">,</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;floppy.db.elephantsql.com&quot;</span><span class="p">,</span>
-    <span class="n">port</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># conn = psycopg2.connect(</span>
+<span class="c1">#     database=&quot;mdihcbmr&quot;,</span>
+<span class="c1">#     user=&quot;mdihcbmr&quot;,</span>
+<span class="c1">#     password=&quot;P3LmyjuPn0faQQ_nRoTV0EBrhxu4jn1D&quot;,</span>
+<span class="c1">#     host=&quot;floppy.db.elephantsql.com&quot;,</span>
+<span class="c1">#     port=&quot;5432&quot;</span>
+<span class="c1"># )</span>
 
-<span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="c1"># cur = conn.cursor()</span>
 
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT sepalwidth FROM iris ORDER BY id&quot;</span><span class="p">)</span>
+<span class="c1"># cur.execute(&quot;SELECT sepalwidth FROM iris ORDER BY id&quot;)</span>
 
-<span class="n">sw</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="c1"># sw = cur.fetchall()</span>
 
-<span class="n">sw</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sw</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SepalWidth&#39;</span><span class="p">])</span>
-<span class="n">sw</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># sw=pd.DataFrame(sw,columns=[&#39;SepalWidth&#39;])</span>
+<span class="c1"># sw.head()</span>
 </pre></div>
 </div>
 </div>
@@ -746,23 +755,23 @@ document.write(`
 <h3>MYSQL Local (PetalLength)<a class="headerlink" href="#mysql-local-petallength" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.tcp.ap.ngrok.io&quot;</span><span class="p">,</span>
-    <span class="n">port</span><span class="o">=</span><span class="s2">&quot;17392&quot;</span><span class="p">,</span>
-    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;prosain200411100114&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># conn = mysql.connector.connect(</span>
+<span class="c1">#     host=&quot;0.tcp.ap.ngrok.io&quot;,</span>
+<span class="c1">#     port=&quot;17392&quot;,</span>
+<span class="c1">#     user=&quot;root&quot;,</span>
+<span class="c1">#     password=&quot;&quot;,</span>
+<span class="c1">#     database=&quot;prosain200411100114&quot;</span>
+<span class="c1"># )</span>
 
-<span class="n">mycursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="c1"># mycursor = conn.cursor()</span>
 
-<span class="n">mycursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT PetalLength FROM iris ORDER BY id;&quot;</span><span class="p">)</span>
+<span class="c1"># mycursor.execute(&quot;SELECT PetalLength FROM iris ORDER BY id;&quot;)</span>
 
-<span class="n">myresult</span> <span class="o">=</span> <span class="n">mycursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="c1"># myresult = mycursor.fetchall()</span>
 
-<span class="c1"># plot the data to data frame</span>
-<span class="n">pl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">myresult</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PetalLength&#39;</span><span class="p">,])</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># # plot the data to data frame</span>
+<span class="c1"># pl = pd.DataFrame(myresult, columns=[&#39;PetalLength&#39;,])</span>
+<span class="c1"># pl.head()</span>
 </pre></div>
 </div>
 </div>
@@ -976,13 +985,6 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_iris</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/HamedAyani114/dataset/main/csv/Iris.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="concat-data">
 <h3>Concat Data<a class="headerlink" href="#concat-data" title="Permalink to this heading">#</a></h3>
@@ -997,7 +999,15 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # gabung semua data frame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sl</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">pl</span><span class="p">,</span><span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;PetalWidthCm&quot;</span><span class="p">],</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;Species&quot;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># df = pd.concat([sl, sw, pl,df_iris[&quot;PetalWidthCm&quot;], df_iris[&quot;Species&quot;]], axis=1)</span>
+
+<span class="n">sl</span> <span class="o">=</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;SepalLengthCm&quot;</span><span class="p">]</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;SepalWidthCm&quot;</span><span class="p">]</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;PetalLengthCm&quot;</span><span class="p">]</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;PetalWidthCm&quot;</span><span class="p">]</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;Species&quot;</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sl</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">pl</span><span class="p">,</span><span class="n">pw</span><span class="p">,</span> <span class="n">spec</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1010,7 +1020,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-dbd78a15-22b1-425a-85c4-d2534bc20b68">
+  <div id="df-a55d028a-461b-4714-9f72-2fdfe8cadd63">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1030,9 +1040,9 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>SepalLength</th>
-      <th>SepalWidth</th>
-      <th>PetalLength</th>
+      <th>SepalLengthCm</th>
+      <th>SepalWidthCm</th>
+      <th>PetalLengthCm</th>
       <th>PetalWidthCm</th>
       <th>Species</th>
     </tr>
@@ -1130,7 +1140,7 @@ document.write(`
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-dbd78a15-22b1-425a-85c4-d2534bc20b68')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-a55d028a-461b-4714-9f72-2fdfe8cadd63')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1181,12 +1191,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-dbd78a15-22b1-425a-85c4-d2534bc20b68 button.colab-df-convert');
+          document.querySelector('#df-a55d028a-461b-4714-9f72-2fdfe8cadd63 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-dbd78a15-22b1-425a-85c4-d2534bc20b68');
+          const element = document.querySelector('#df-a55d028a-461b-4714-9f72-2fdfe8cadd63');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1213,8 +1223,8 @@ document.write(`
 <span class="n">pl</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;pl_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">sl</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sl_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">sw</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sw_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;PetalWidthCm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;pw_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df_iris</span><span class="p">[</span><span class="s2">&quot;Species&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;cls_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pw</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;pw_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">spec</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;cls_iris.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1240,7 +1250,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a868cc09-d35a-430a-808f-47720c645317">
+  <div id="df-952994a0-4e22-4796-bb07-21fdfd7b8cfe">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1260,9 +1270,9 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>SepalLength</th>
-      <th>SepalWidth</th>
-      <th>PetalLength</th>
+      <th>SepalLengthCm</th>
+      <th>SepalWidthCm</th>
+      <th>PetalLengthCm</th>
       <th>PetalWidthCm</th>
       <th>Species</th>
     </tr>
@@ -1360,7 +1370,7 @@ document.write(`
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-a868cc09-d35a-430a-808f-47720c645317')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-952994a0-4e22-4796-bb07-21fdfd7b8cfe')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1411,12 +1421,12 @@ document.write(`
 
       <script>
         const buttonEl =
-          document.querySelector('#df-a868cc09-d35a-430a-808f-47720c645317 button.colab-df-convert');
+          document.querySelector('#df-952994a0-4e22-4796-bb07-21fdfd7b8cfe button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-a868cc09-d35a-430a-808f-47720c645317');
+          const element = document.querySelector('#df-952994a0-4e22-4796-bb07-21fdfd7b8cfe');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
