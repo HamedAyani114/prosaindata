@@ -63,8 +63,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'scrapping_comment_yt';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tugas 5 (LSA Topic Modelling)" href="tugas5_topic_modelling.html" />
-    <link rel="prev" title="Tugas 4 (PageRank dan Ringkasan Text)" href="tugas4_pagerank_ringkasantext.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,14 +153,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tugas1_webscrapper.html">Tugas 1 (Web Scrapping)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas2_getdataserver_pipelines.html">Tugas 2 (GetData Server And Create PipeLines)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas3_regression_passengerdataset.html">Tugas 3 (Regression Time Series Data Passenger)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uts_klasifikasi_abstrak.html">UTS (KLASIFIKASI ABSTRAK PTA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas4_pagerank_ringkasantext.html">Tugas 4 (PageRank dan Ringkasan Text)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scrapping Data Comment Youtube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas5_topic_modelling.html">Tugas 5 (LSA Topic Modelling)</a></li>
 </ul>
 
@@ -407,27 +403,10 @@ document.write(`
 <h1>Scrapping Data Comment Youtube<a class="headerlink" href="#scrapping-data-comment-youtube" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>selenium<span class="w"> </span>--quiet
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/6.6 MB</span> <span class=" -Color -Color-Red">33.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">384.9/384.9 kB</span> <span class=" -Color -Color-Red">25.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.3/58.3 kB</span> <span class=" -Color -Color-Red">3.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">Chrome</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import library</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">googleapiclient.discovery</span> <span class="kn">import</span> <span class="n">build</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -436,55 +415,83 @@ document.write(`
 <h2>Scrap<a class="headerlink" href="#scrap" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-3-bca0e2660b9f&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">video_comments</span><span class="p">(</span><span class="n">video_id</span><span class="p">,</span> <span class="n">api_key</span><span class="p">):</span>
+	<span class="c1"># empty list for storing reply</span>
+	<span class="n">replies</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="ne">NameError</span>: name &#39;a&#39; is not defined
+	<span class="c1"># creating youtube resource object</span>
+	<span class="n">youtube</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="s1">&#39;youtube&#39;</span><span class="p">,</span> <span class="s1">&#39;v3&#39;</span><span class="p">,</span> <span class="n">developerKey</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+	<span class="c1"># retrieve youtube video results</span>
+	<span class="n">video_response</span> <span class="o">=</span> <span class="n">youtube</span><span class="o">.</span><span class="n">commentThreads</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">part</span><span class="o">=</span><span class="s1">&#39;snippet,replies&#39;</span><span class="p">,</span> <span class="n">videoId</span><span class="o">=</span><span class="n">video_id</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+	<span class="c1"># iterate video response</span>
+	<span class="k">while</span> <span class="n">video_response</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">video_response</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]:</span>
+			
+			<span class="c1"># Extracting comments ()</span>
+			<span class="n">published</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;topLevelComment&#39;</span><span class="p">][</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;publishedAt&#39;</span><span class="p">]</span>
+			<span class="n">user</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;topLevelComment&#39;</span><span class="p">][</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;authorDisplayName&#39;</span><span class="p">]</span>
+			<span class="n">comment</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;topLevelComment&#39;</span><span class="p">][</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;textDisplay&#39;</span><span class="p">]</span>
+			<span class="n">likeCount</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;topLevelComment&#39;</span><span class="p">][</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;likeCount&#39;</span><span class="p">]</span>
+
+			<span class="n">replies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">published</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">comment</span><span class="p">,</span> <span class="n">likeCount</span><span class="p">])</span>
+
+			<span class="n">replycount</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="s1">&#39;totalReplyCount&#39;</span><span class="p">]</span>
+
+			<span class="c1"># if reply is there</span>
+			<span class="c1"># if replycount&gt;0:</span>
+			<span class="c1"># 	# iterate through all reply</span>
+			<span class="c1"># 	for reply in item[&#39;replies&#39;][&#39;comments&#39;]:</span>
+					
+			<span class="c1"># 		# Extract reply</span>
+			<span class="c1"># 		published = reply[&#39;snippet&#39;][&#39;publishedAt&#39;]</span>
+			<span class="c1"># 		user = reply[&#39;snippet&#39;][&#39;authorDisplayName&#39;]</span>
+			<span class="c1"># 		repl = reply[&#39;snippet&#39;][&#39;textDisplay&#39;]</span>
+			<span class="c1"># 		likeCount = reply[&#39;snippet&#39;][&#39;likeCount&#39;]</span>
+					
+			<span class="c1"># 		# Store reply is list</span>
+			<span class="c1"># 		replies.append([published, user, repl, likeCount])</span>
+
+		<span class="c1"># Again repeat</span>
+		<span class="k">if</span> <span class="s1">&#39;nextPageToken&#39;</span> <span class="ow">in</span> <span class="n">video_response</span><span class="p">:</span>
+			<span class="n">video_response</span> <span class="o">=</span> <span class="n">youtube</span><span class="o">.</span><span class="n">commentThreads</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span>
+					<span class="n">part</span> <span class="o">=</span> <span class="s1">&#39;snippet,replies&#39;</span><span class="p">,</span>
+					<span class="n">pageToken</span> <span class="o">=</span> <span class="n">video_response</span><span class="p">[</span><span class="s1">&#39;nextPageToken&#39;</span><span class="p">],</span> 
+					<span class="n">videoId</span> <span class="o">=</span> <span class="n">video_id</span>
+				<span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">break</span>
+	<span class="c1">#endwhile</span>
+	<span class="k">return</span> <span class="n">replies</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#api key</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;AIzaSyACxT95EPnUkLb_Mtjq2MvG0tcJqQiulhI&#39;</span>
+<span class="n">video_id</span> <span class="o">=</span> <span class="s2">&quot;rbZ3Wv_hLJA&quot;</span>
 
-<span class="k">with</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;C:\Program Files\chromedriver.exe&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">driver</span><span class="p">:</span>
-    <span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.youtube.com/watch?v=rbZ3Wv_hLJA&amp;ab_channel=CNNIndonesia&quot;</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
-        <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_all_elements_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="s2">&quot;#content&quot;</span><span class="p">))):</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-10-10535b3023fc&gt;:3: DeprecationWarning: executable_path has been deprecated, please pass in a Service object
-  with Chrome(executable_path=r&#39;C:\Program Files\chromedriver.exe&#39;) as driver:
+<span class="n">comments</span> <span class="o">=</span> <span class="n">video_comments</span><span class="p">(</span><span class="n">video_id</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>   
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#menjadikan dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comments</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;publishedAt&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="s1">&#39;likeCount&#39;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-292fbfd6-2159-4e14-be3e-e43c3530d3f4">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -502,71 +509,199 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>publishedAt</th>
+      <th>user</th>
       <th>comment</th>
+      <th>likeCount</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>ID\nSkip navigation\nSign in\nWorship Piano: B...</td>
+      <td>2023-05-12T19:33:49Z</td>
+      <td>Cekwanaceh8074gmai Wan</td>
+      <td>Surfe gak juga benar &lt;br&gt;Rakyat yg menentukan</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td></td>
+      <td>2023-05-10T15:01:33Z</td>
+      <td>Anto Anto</td>
+      <td>Lembaga survei GK ada yg independent skr,,semu...</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Pak Prabowo Subianto saya mohon,\nAnda jangan ...</td>
+      <td>2023-05-10T05:35:54Z</td>
+      <td>SITI MARHAMAH</td>
+      <td>Ibu Khofifah dan Bpk Prabowo sangattt okeee,ay...</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>gw dan sekeluarga adalah loyalis PDI Perjuanga...</td>
+      <td>2023-05-09T22:16:57Z</td>
+      <td>M. Jen</td>
+      <td>Semoga Pak Anies selalu sehat wal afiat....</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>ganjar salah satu yang menolak israel, berakib...</td>
+      <td>2023-05-08T14:19:52Z</td>
+      <td>Redmi 4x</td>
+      <td>Pokoknya hanguskan quick count dan survey lain...</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>1170</th>
-      <td></td>
+      <th>2669</th>
+      <td>2023-03-31T16:36:18Z</td>
+      <td>Arif Mahmudi</td>
+      <td>Udah gak respek SMA Ganjar gara2 kemarin ,,Ayo...</td>
+      <td>115</td>
     </tr>
     <tr>
-      <th>1171</th>
-      <td></td>
+      <th>2670</th>
+      <td>2023-03-31T16:35:38Z</td>
+      <td>nur syah</td>
+      <td>dari ganjar ganti ke prabowo</td>
+      <td>22</td>
     </tr>
     <tr>
-      <th>1172</th>
-      <td></td>
+      <th>2671</th>
+      <td>2023-03-31T16:35:35Z</td>
+      <td>robinson kribo</td>
+      <td>Mungkin saatnya pak prabowo mewujudkan mimpiny...</td>
+      <td>63</td>
     </tr>
     <tr>
-      <th>1173</th>
-      <td></td>
+      <th>2672</th>
+      <td>2023-03-31T16:33:36Z</td>
+      <td>DGPChannel</td>
+      <td>Yg penting 2024 jangan menangkan PDIP. Yg ada ...</td>
+      <td>29</td>
     </tr>
     <tr>
-      <th>1174</th>
-      <td></td>
+      <th>2673</th>
+      <td>2023-03-31T16:32:26Z</td>
+      <td>sahlan</td>
+      <td>prabowo</td>
+      <td>12</td>
     </tr>
   </tbody>
 </table>
-<p>1175 rows × 1 columns</p>
-</div></div></div>
+<p>2674 rows × 4 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-292fbfd6-2159-4e14-be3e-e43c3530d3f4')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-292fbfd6-2159-4e14-be3e-e43c3530d3f4 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-292fbfd6-2159-4e14-be3e-e43c3530d3f4');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
 </div>
 </div>
 <div class="section" id="prepocessing-and-cleaning">
 <h2>Prepocessing and cleaning<a class="headerlink" href="#prepocessing-and-cleaning" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>emoji<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/240.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">235.5/240.9 kB</span> <span class=" -Color -Color-Red">7.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">240.9/240.9 kB</span> <span class=" -Color -Color-Red">4.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h  Preparing metadata (setup.py) ... ?25l?25hdone
+  Building wheel for emoji (setup.py) ... ?25l?25hdone
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">emoji</span>
 
 <span class="c1"># Text Cleaning</span>
 <span class="k">def</span> <span class="nf">cleaning</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="c1"># HTML Tag Removal</span>
-
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;&lt;.*?&gt;|&amp;([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
 
     <span class="c1"># Case folding</span>
@@ -585,9 +720,10 @@ document.write(`
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">emoji</span><span class="o">.</span><span class="n">replace_emoji</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 
-    <span class="c1"># Mengubah text &#39;nan&#39; dengan whitespace agar nantinya dapat dihapus</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># # Mengubah text &#39;nan&#39; dengan whitespace agar nantinya dapat dihapus</span>
+    <span class="c1"># text = re.sub(&#39;nan&#39;, &#39;&#39;, text)</span>
 
     <span class="k">return</span> <span class="n">text</span>
 </pre></div>
@@ -596,11 +732,22 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">indoNLP.preprocessing</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">replace_word_elongation</span><span class="p">,</span> <span class="n">replace_slang</span><span class="p">,</span> <span class="n">emoji_to_words</span><span class="p">,</span> <span class="n">remove_html</span>
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">([</span><span class="n">replace_word_elongation</span><span class="p">,</span> <span class="n">replace_slang</span><span class="p">,</span> <span class="n">emoji_to_words</span><span class="p">,</span> <span class="n">remove_html</span><span class="p">])</span>
-<span class="c1"># steamming</span>
-<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
-<span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>indoNLP<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/121.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">121.9/121.9 kB</span> <span class=" -Color -Color-Red">4.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">indoNLP.preprocessing</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">replace_word_elongation</span><span class="p">,</span> <span class="n">replace_slang</span><span class="p">,</span> <span class="n">emoji_to_words</span><span class="p">,</span> <span class="n">remove_html</span><span class="p">,</span> <span class="n">remove_url</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">([</span><span class="n">replace_word_elongation</span><span class="p">,</span> <span class="n">replace_slang</span><span class="p">,</span> <span class="n">remove_html</span><span class="p">,</span> <span class="n">remove_url</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -622,8 +769,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>comment             0
-comment (clean)    10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>publishedAt        0
+user               0
+comment            0
+likeCount          0
+comment (clean)    6
 dtype: int64
 </pre></div>
 </div>
@@ -646,7 +796,10 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-5ff9b6bf-9944-42bd-ae58-23c4a1941875">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -664,70 +817,182 @@ dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>publishedAt</th>
+      <th>user</th>
       <th>comment</th>
+      <th>likeCount</th>
       <th>comment (clean)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>ID\nSkip navigation\nSign in\nWorship Piano: B...</td>
-      <td>id skip navigation sign ini worship piano begi...</td>
+      <td>2023-05-12T19:33:49Z</td>
+      <td>Cekwanaceh8074gmai Wan</td>
+      <td>Surfe gak juga benar &lt;br&gt;Rakyat yg menentukan</td>
+      <td>0</td>
+      <td>surfe enggak juga benar rakyat yang menentukan</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-05-10T15:01:33Z</td>
+      <td>Anto Anto</td>
+      <td>Lembaga survei GK ada yg independent skr,,semu...</td>
+      <td>0</td>
+      <td>lembaga survei enggak ada yang independent sek...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Pak Prabowo Subianto saya mohon,\nAnda jangan ...</td>
-      <td>pak prabowo subianto saya mohon anda jangan be...</td>
+      <td>2023-05-10T05:35:54Z</td>
+      <td>SITI MARHAMAH</td>
+      <td>Ibu Khofifah dan Bpk Prabowo sangattt okeee,ay...</td>
+      <td>0</td>
+      <td>ibu khofifah dan bpk prabowo sangat oke ayo du...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>gw dan sekeluarga adalah loyalis PDI Perjuanga...</td>
-      <td>gue dan sekeluarga adalah loyalis pdi perjuang...</td>
+      <td>2023-05-09T22:16:57Z</td>
+      <td>M. Jen</td>
+      <td>Semoga Pak Anies selalu sehat wal afiat....</td>
+      <td>0</td>
+      <td>semoga pak anies selalu sehat wal afiat</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>ganjar salah satu yang menolak israel, berakib...</td>
-      <td>ganjar salah satu yang menolak israel berakiba...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Pak Prabowo sekarang auranya adem,beda waktu n...</td>
-      <td>pak prabowo sekarang auranya adem beda waktu n...</td>
+      <td>2023-05-08T14:19:52Z</td>
+      <td>Redmi 4x</td>
+      <td>Pokoknya hanguskan quick count dan survey lain...</td>
+      <td>0</td>
+      <td>pokoknya hanguskan quick count dan survey lain...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>1163</th>
-      <td>Di</td>
-      <td>di</td>
+      <th>2669</th>
+      <td>2023-03-31T16:36:18Z</td>
+      <td>Arif Mahmudi</td>
+      <td>Udah gak respek SMA Ganjar gara2 kemarin ,,Ayo...</td>
+      <td>115</td>
+      <td>sudah enggak respek sama ganjar gara gara kema...</td>
     </tr>
     <tr>
-      <th>1164</th>
-      <td>Siapa pula yg mau pilih prabowo....history mas...</td>
-      <td>siapa pula yang mau pilih prabowo history masa...</td>
+      <th>2670</th>
+      <td>2023-03-31T16:35:38Z</td>
+      <td>nur syah</td>
+      <td>dari ganjar ganti ke prabowo</td>
+      <td>22</td>
+      <td>dari ganjar ganti ke prabowo</td>
     </tr>
     <tr>
-      <th>1165</th>
-      <td>Lembaga survei bayaran\nAslinya pak Anies yg t...</td>
-      <td>lembaga survei bayaran aslinya pak anies yang ...</td>
+      <th>2671</th>
+      <td>2023-03-31T16:35:35Z</td>
+      <td>robinson kribo</td>
+      <td>Mungkin saatnya pak prabowo mewujudkan mimpiny...</td>
+      <td>63</td>
+      <td>mungkin saatnya pak prabowo mewujudkan mimpiny...</td>
     </tr>
     <tr>
-      <th>1166</th>
-      <td>Siapapun calonya presiden 2024\nKami rakyat  t...</td>
-      <td>siapapun calonya presiden kami rakyat tetap an...</td>
+      <th>2672</th>
+      <td>2023-03-31T16:33:36Z</td>
+      <td>DGPChannel</td>
+      <td>Yg penting 2024 jangan menangkan PDIP. Yg ada ...</td>
+      <td>29</td>
+      <td>yang penting jangan menangkan pdip yang ada ak...</td>
     </tr>
     <tr>
-      <th>1167</th>
-      <td>Aku tetap dukung pak Anies</td>
-      <td>aku tetap dukung pak anies</td>
+      <th>2673</th>
+      <td>2023-03-31T16:32:26Z</td>
+      <td>sahlan</td>
+      <td>prabowo</td>
+      <td>12</td>
+      <td>prabowo</td>
     </tr>
   </tbody>
 </table>
-<p>1165 rows × 2 columns</p>
-</div></div></div>
+<p>2668 rows × 5 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-5ff9b6bf-9944-42bd-ae58-23c4a1941875')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-5ff9b6bf-9944-42bd-ae58-23c4a1941875 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-5ff9b6bf-9944-42bd-ae58-23c4a1941875');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
 </div>
 </div>
 <div class="section" id="export">
@@ -735,7 +1000,7 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to csv</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;datacomment_cnn_fix.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;datacomment_cnn_fix2.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -774,24 +1039,6 @@ dtype: int64
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="tugas4_pagerank_ringkasantext.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tugas 4 (PageRank dan Ringkasan Text)</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="tugas5_topic_modelling.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tugas 5 (LSA Topic Modelling)</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
